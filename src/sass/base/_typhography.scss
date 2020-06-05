@@ -1,0 +1,70 @@
+body {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: $color-secondary-dark;
+}
+
+a {
+  color: $color-secondary-dark;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-secondary-light;
+  }
+}
+
+.heading {
+  &--primary {
+    color: $color-secondary-dark;
+    font-size: $font-size-big;
+  }
+
+  &--secondary {
+    color: $color-primary-dark;
+    font-size: $font-size-medium;
+    font-weight: 400;
+    margin-bottom: 3.5rem;
+  }
+
+  &--button {
+    font-family: $font-secondary;
+    font-weight: 100;
+    font-size: $font-size-small;
+    text-decoration: underline;
+    transition: all .2s ease-out;
+    width: max-content;
+    margin: 0 auto;
+
+    &:hover {
+      background-color: $color-primary-light;
+      color: $color-secondary-light;
+      transform: translateY(-.3rem);
+    }
+  }
+}
+
+.text {
+  &__title {
+    color: $color-white;
+    font-size: $font-size-big;
+    font-weight: 500;
+    text-shadow: $box-shadow-1;
+    @include absCenter;
+  }
+
+  &--small {
+    font-size: $font-size-mini;
+  }
+
+  &--medium {
+    font-size: $font-size-small;
+    font-weight: 100;
+  }
+
+  &--medium-bold {
+    font-size: $font-size-small;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,56 @@
+[class^="section"] {
+  margin-top: 8rem;
+}
+
+.section {
+  &__banner {
+    position: relative;
+    height: 60vh;
+
+     .banner__img {
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+     }
+
+     .banner__text {
+       font-size: $font-size-huge;
+       position: absolute;
+       right: 18rem;
+       bottom: 0;
+       max-width: 30vw;
+       color: $color-white;
+     }
+  }
+
+  &__testimoni {
+    width: 100%;
+  }
+
+  &__kelebihan {
+    margin-top: 16rem;
+    height: 40vh;
+
+   &--kiri-1, &--kiri-3{
+     background-color: $color-primary-light;
+     text-align: left;
+   }
+
+   &--kiri-2 {
+    background-color: $color-primary-dark;
+    text-align: left;
+  }
+
+   &--kanan-1, &--kanan-3 {
+     background-color: $color-primary-dark;
+     text-align: right;
+   }
+
+   &--kanan-2 {
+    background-color: $color-primary-light;
+    text-align: right;
+  }
+  }
+
+}

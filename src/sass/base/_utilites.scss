@@ -1,0 +1,47 @@
+.u-pad {
+  &--body {
+    padding: 0 20%;
+
+    &--l {
+      padding: 0 0 0 20%;
+    }
+
+    &--r {
+      padding: 0 20% 0 0;
+    }
+  }
+
+  &--1 {
+    padding: 2.5rem 3rem 0 3rem;
+  }
+}
+
+.u-bg {
+  &--white {
+    background-color: $color-white;
+    height: 100%;
+  }
+}
+
+.u-height {
+  height: 65% !important;
+}
+
+.img {
+  &--fit {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &--medium {
+    height: 15rem;
+  }
+}
+
+.text {
+  &--white {
+    color: $color-white !important;
+    margin: 0;
+  }
+}

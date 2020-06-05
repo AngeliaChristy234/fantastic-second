@@ -1,0 +1,26 @@
+[class^="button"] {
+  font-family: $font-primary;
+  color: $color-secondary-light;
+  border: none;
+
+  &:active {
+    outline: none;
+  }
+}
+
+.button {
+  &__signin {
+    background-color: $color-primary-light;
+    height: 3.5rem;
+    width: 10rem;
+    font-size: $font-size-default;
+  }
+
+  &__login {
+    background-color: $color-primary-dark;
+    height: 3.5rem;
+    width: 10rem;
+    font-size: $font-size-default;
+  }
+}
+
