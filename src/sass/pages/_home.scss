@@ -30,27 +30,83 @@
 
   &__kelebihan {
     margin-top: 16rem;
-    height: 40vh;
 
-   &--kiri-1, &--kiri-3{
-     background-color: $color-primary-light;
-     text-align: left;
-   }
+    &--1 {
+      height: 40vh;
 
-   &--kiri-2 {
-    background-color: $color-primary-dark;
-    text-align: left;
-  }
+      &--kiri {
+        padding: 0 0 0 20%;
+        background-color: $color-primary-light;
 
-   &--kanan-1, &--kanan-3 {
-     background-color: $color-primary-dark;
-     text-align: right;
-   }
+        div {
+          padding: 3rem 0 0 3rem;
+        }
+      }
 
-   &--kanan-2 {
-    background-color: $color-primary-light;
-    text-align: right;
-  }
+      &--kanan {
+        padding: 0 20% 0 0;
+        background-color: $color-primary-dark;
+
+        img {
+          @include imgFit;
+        }
+      }
+
+    }
+
+    &--2 {
+      height: 40vh;
+
+      &--kiri {
+        padding: 0 0 0 20%;
+        background-color: $color-primary-dark;
+
+        img {
+          @include imgFit;
+        }
+
+      }
+
+      &--kanan {
+        padding: 0 20% 0 0;
+        background-color: $color-primary-light;
+        text-align: right;
+
+        div {
+          padding: 3rem 3rem 0 0;
+        }
+      }
+
+    }
+
+    &--3 {
+      height: 30vh;
+
+      &--kiri {
+        padding: 4rem 0 0 20%;
+        background-color: $color-primary-light;
+
+        img {
+          width: 80%;
+          height: auto;
+        }
+
+      }
+
+      &--kanan {
+        padding: 4rem 20% 0 0;
+        background-color: $color-primary-dark;
+        text-align: right;
+
+        img {
+          width: 30%;
+          height: auto;
+          margin-top: -2rem;
+        }
+
+      }
+
+    }
   }
 
 }

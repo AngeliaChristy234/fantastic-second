@@ -13,6 +13,12 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin imgFit {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 @mixin respond($breakpoint) {
   @if $breakpoint == phone {
     @media only screen and (max-width: 37.5em) { @content }; //600px : 16 px

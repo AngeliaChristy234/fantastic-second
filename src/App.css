@@ -78,12 +78,17 @@ a:hover {
 .heading--primary {
   color: #222831;
   font-size: 5rem;
+  font-weight: 400;
 }
 .heading--secondary {
   color: #30475E;
   font-size: 3rem;
   font-weight: 400;
   margin-bottom: 3.5rem;
+}
+.heading--tertiary {
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
 }
 .heading--button {
   font-family: "Montserrat", sans-serif;
@@ -131,8 +136,9 @@ a:hover {
 .u-pad--body--r {
   padding: 0 20% 0 0;
 }
-.u-pad--1 {
-  padding: 2.5rem 3rem 0 3rem;
+
+.u-mar__btm--mini {
+  margin-bottom: 4rem !important;
 }
 
 .u-bg--white {
@@ -140,22 +146,8 @@ a:hover {
   height: 100%;
 }
 
-.u-height {
-  height: 65% !important;
-}
-
-.img--fit {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.img--medium {
-  height: 15rem;
-}
-
 .text--white {
   color: #ffffff !important;
-  margin: 0;
 }
 
 [class^=button] {
@@ -258,8 +250,38 @@ a:hover {
 }
 
 .footer {
-  height: 50vh;
+  width: 100%;
+  height: 40vh;
   background-color: #222831;
+  padding-top: 8rem;
+  position: relative;
+}
+.footer__tentang {
+  float: left;
+}
+.footer__tentang--li {
+  display: block;
+  color: #ECECEC;
+  font-weight: 100;
+}
+.footer__tentang span {
+  margin-top: 2rem;
+}
+.footer__logo {
+  position: absolute;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.footer__kontak {
+  float: right;
+}
+.footer__kontak--li {
+  display: block;
+  color: #ECECEC;
+  font-weight: 100;
+  text-align: right;
 }
 
 .header {
@@ -356,7 +378,6 @@ body {
 
 .NMrow {
   max-width: 100%;
-  height: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -627,23 +648,66 @@ body {
 }
 .section__kelebihan {
   margin-top: 16rem;
+}
+.section__kelebihan--1 {
   height: 40vh;
 }
-.section__kelebihan--kiri-1, .section__kelebihan--kiri-3 {
+.section__kelebihan--1--kiri {
+  padding: 0 0 0 20%;
   background-color: #C1A57B;
-  text-align: left;
 }
-.section__kelebihan--kiri-2 {
+.section__kelebihan--1--kiri div {
+  padding: 3rem 0 0 3rem;
+}
+.section__kelebihan--1--kanan {
+  padding: 0 20% 0 0;
   background-color: #30475E;
-  text-align: left;
 }
-.section__kelebihan--kanan-1, .section__kelebihan--kanan-3 {
+.section__kelebihan--1--kanan img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.section__kelebihan--2 {
+  height: 40vh;
+}
+.section__kelebihan--2--kiri {
+  padding: 0 0 0 20%;
+  background-color: #30475E;
+}
+.section__kelebihan--2--kiri img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.section__kelebihan--2--kanan {
+  padding: 0 20% 0 0;
+  background-color: #C1A57B;
+  text-align: right;
+}
+.section__kelebihan--2--kanan div {
+  padding: 3rem 3rem 0 0;
+}
+.section__kelebihan--3 {
+  height: 30vh;
+}
+.section__kelebihan--3--kiri {
+  padding: 4rem 0 0 20%;
+  background-color: #C1A57B;
+}
+.section__kelebihan--3--kiri img {
+  width: 80%;
+  height: auto;
+}
+.section__kelebihan--3--kanan {
+  padding: 4rem 20% 0 0;
   background-color: #30475E;
   text-align: right;
 }
-.section__kelebihan--kanan-2 {
-  background-color: #C1A57B;
-  text-align: right;
+.section__kelebihan--3--kanan img {
+  width: 30%;
+  height: auto;
+  margin-top: -2rem;
 }
 
 /*# sourceMappingURL=App.css.map */

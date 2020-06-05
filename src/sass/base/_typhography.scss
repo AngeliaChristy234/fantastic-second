@@ -19,6 +19,7 @@ a {
   &--primary {
     color: $color-secondary-dark;
     font-size: $font-size-big;
+    font-weight: 400;
   }
 
   &--secondary {
@@ -26,6 +27,11 @@ a {
     font-size: $font-size-medium;
     font-weight: 400;
     margin-bottom: 3.5rem;
+  }
+
+  &--tertiary {
+    font-weight: 500;
+    font-family: $font-secondary;
   }
 
   &--button {
