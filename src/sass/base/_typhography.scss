@@ -32,6 +32,10 @@ a {
   &--tertiary {
     font-weight: 500;
     font-family: $font-secondary;
+
+    &--thin {
+      font-weight: 400;
+    }
   }
 
   &--button {
@@ -60,8 +64,15 @@ a {
     @include absCenter;
   }
 
+  &__description {
+    font-family: $font-secondary;
+    font-size: $font-size-mini;
+    font-weight: 200;
+  }
+
   &--small {
     font-size: $font-size-mini;
+    font-weight: 500;
   }
 
   &--medium {
@@ -72,5 +83,10 @@ a {
   &--medium-bold {
     font-size: $font-size-small;
     font-weight: 500;
+  }
+
+  &--medium-bold-1 {
+    font-size: $font-size-small;
+    font-weight: 600;
   }
 }

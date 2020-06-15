@@ -1,0 +1,20 @@
+.filter {
+  display: block;
+  &__kondisi {
+    float: left;
+    text-align: center;
+
+    .text--small {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__harga {
+    float: right;
+    text-align: center;
+
+    .text--small {
+      margin-bottom: 1rem;
+    }
+  }
+}

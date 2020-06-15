@@ -80,7 +80,7 @@
     }
 
     &--3 {
-      height: 30vh;
+      height: 35vh;
 
       &--kiri {
         padding: 4rem 0 0 20%;
@@ -88,7 +88,9 @@
 
         img {
           width: 80%;
+          max-width: 30rem;
           height: auto;
+          margin-top: -2rem;
         }
 
       }
@@ -100,6 +102,7 @@
 
         img {
           width: 30%;
+          max-width: 11rem;
           height: auto;
           margin-top: -2rem;
         }

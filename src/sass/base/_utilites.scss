@@ -1,6 +1,6 @@
 .u-pad {
   &--body {
-    padding: 0 20%;
+    padding: 0 18%;
 
     &--l {
       padding: 0 0 0 20%;
@@ -13,6 +13,11 @@
 }
 
 .u-mar{
+  &__top {
+    &--big {
+      margin-top: 16rem;
+    }
+  }
   &__btm {
     &--mini {
       margin-bottom: 4rem !important;
@@ -24,6 +29,12 @@
   &--white {
     background-color: $color-white;
     height: 100%;
+  }
+}
+
+.u-display {
+  &--block {
+    display: block;
   }
 }
 

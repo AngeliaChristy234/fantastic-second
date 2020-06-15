@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="../src/App.css">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="../src/App.css">
-  <title>Playground</title>
+  <title>Hasil pencaharian</title>
 </head>
 <body>
   <!-- <header class="header">
-    <img src="..//logo-sds-small.png" alt="" class="header__logo">
+    <img src="img/logo-sds-small.png" alt="" class="header__logo">
     <a href="#" class="header__kategori">Kategori</a>
     <div class="header__searchbar">
       <input type="text" class="searchbar searchbar--small" placeholder="Cari barang">
@@ -31,34 +31,28 @@
     </div>
   </header>
 
-  <section class="section__banner">
-    <img src="img/dummy.jpg" alt="" class="banner__img">
-    <h1 class="banner__text">Barang second Kondisi mantap!</h1>
+  <section class="section__result-top">
+    <h3 class="heading--tertiary--thin">Hasil pencaharian untuk "Macbook Pro"</h3>
   </section>
 
-  <section class="section__kategori u-pad--body">
-    <h2 class="heading--secondary">Lihat kategori</h2>
-    <div class="row">
-      <div class="col-1-of-3">
-        <div class="card__rect--small">
-          <span class="text__title">Elektronik</span>
-        </div>
-      </div>
-      <div class="col-1-of-3">
-        <div class="card__rect--small">
-          <span class="text__title">Buku</span>
-        </div>
-      </div>
-      <div class="col-1-of-3">
-        <div class="card__rect--small">
-          <span class="text__title">Fashion</span>
-        </div>
-      </div>
+  <section class="section__filter filter u-pad--body">
+    <div class="filter__kondisi">
+      <h4 class="text--small">Kondisi</h4>
+      <button class="button__filter">90%></button>
+      <button class="button__filter">70%></button>
+      <button class="button__filter">50%></button>
+      <button class="button__filter">/<`20%</button>
+    </div>
+    <div class="filter__harga">
+      <h4 class="text--small">Harga</h4>
+      <button class="button__filter">12jt></button>
+      <button class="button__filter">10jt></button>
+      <button class="button__filter">8jt></button>
+      <button class="button__filter">4jt></button>
     </div>
   </section>
 
-  <section class="section__barang-terbaru u-pad--body">
-    <h2 class="heading--secondary">Barang terbaru</h2>
+  <section class="section__search-result u-pad--body">
     <div class="row">
       <div class="col-1-of-4">
         <div class="card__product">
@@ -127,78 +121,42 @@
         </div>
       </div>
     </div>
-    <div class="heading--button"><a href="#">Lihat lainnya</a></div>
   </section>
 
-  <section class="section__testimoni u-pad--body">
-    <h2 class="heading--secondary">Kata Pelanggan</h2>
-    <div class="row animate--left">
-      <div class="col-1-of-2">
-        <div class="card__rect--medium ">
-          <img src="img/dummy.jpg" alt="">
-          <span class="text--small">Lemari IKEA desain 2020</span>
-          <h4 class="text--medium-bold">"Harganya oke, barangnya juga oke. Puas deh intinya."</h4>
-          <span class="text--medium">~ Aganta Sandi</span>
+  <section class="section__serupa u-pad--body">
+    <h3 class="heading--tertiary--thin">Sejenis Macbook Pro</h3>
+    <div class="row">
+      <div class="col-1-of-4">
+        <div class="card__product">
+          <img src="img/dummy.jpg" alt="" class="card__product--image">
+          <span class="card__product--name">Macbook Pro 16 inci 2017</span>
+          <span class="card__product--price">Rp.10jt</span>
+          <span class="card__product--stock">sisa 1</span>
         </div>
       </div>
-      <div class="col-1-of-2">
-        <div class="card__rect--medium">
-          <img src="img/dummy.jpg" alt="">
-          <span class="text--small">Lemari IKEA desain 2020</span>
-          <h4 class="text--medium-bold">"Harganya oke, barangnya juga oke. Puas deh intinya."</h4>
-          <span class="text--medium">~ Aganta Sandi</span>
+      <div class="col-1-of-4">
+        <div class="card__product">
+          <img src="img/dummy.jpg" alt="" class="card__product--image">
+          <span class="card__product--name">Macbook Pro 16 inci 2017</span>
+          <span class="card__product--price">Rp.10jt</span>
+          <span class="card__product--stock">sisa 1</span>
         </div>
       </div>
-    </div>
-    <div class="row animate--right">
-      <div class="col-1-of-2">
-        <div class="card__rect--medium ">
-          <img src="img/dummy.jpg" alt="">
-          <span class="text--small">Lemari IKEA desain 2020</span>
-          <h4 class="text--medium-bold">"Harganya oke, barangnya juga oke. Puas deh intinya."</h4>
-          <span class="text--medium">~ Aganta Sandi</span>
+      <div class="col-1-of-4">
+        <div class="card__product">
+          <img src="img/dummy.jpg" alt="" class="card__product--image">
+          <span class="card__product--name">Macbook Pro 16 inci 2017</span>
+          <span class="card__product--price">Rp.10jt</span>
+          <span class="card__product--stock">sisa 1</span>
         </div>
       </div>
-      <div class="col-1-of-2">
-        <div class="card__rect--medium">
-          <img src="img/dummy.jpg" alt="">
-          <span class="text--small">Lemari IKEA desain 2020</span>
-          <h4 class="text--medium-bold">"Harganya oke, barangnya juga oke. Puas deh intinya."</h4>
-          <span class="text--medium">~ Aganta Sandi</span>
+      <div class="col-1-of-4">
+        <div class="card__product">
+          <img src="img/dummy.jpg" alt="" class="card__product--image">
+          <span class="card__product--name">Macbook Pro 16 inci 2017</span>
+          <span class="card__product--price">Rp.10jt</span>
+          <span class="card__product--stock">sisa 1</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section__kelebihan">
-    <div class="NMrow section__kelebihan--1">
-      <div class="col-1-of-2 section__kelebihan--1--kiri">
-        <div class="u-bg--white">
-          <h2 class="heading--primary">Harga mantap</h2>
-        </div>
-      </div>
-      <div class="col-1-of-2 section__kelebihan--1--kanan">
-        <img src="img/dummy.jpg" alt="">
-      </div>
-    </div>
-    <div class="NMrow section__kelebihan--2">
-      <div class="col-1-of-2 section__kelebihan--2--kiri">
-        <img src="img/dummy.jpg" alt="">
-      </div>
-      <div class="col-1-of-2 section__kelebihan--2--kanan">
-        <div class="u-bg--white">
-          <h2 class="heading--primary">Barang terseleksi</h2>
-        </div>
-      </div>
-    </div>
-    <div class="NMrow section__kelebihan--3">
-      <div class="col-1-of-2 section__kelebihan--3--kiri">
-        <h3 class="heading--secondary text--white">Beli langsung di web</h3>
-        <img src="img/logo-sds-small.png" alt="">
-      </div>
-      <div class="col-1-of-2 section__kelebihan--3--kanan">
-        <h3 class="heading--secondary text--white">Beli melalui Tokopedia</h3>
-        <img src="img/Tokopedia.png" alt="">
       </div>
     </div>
   </section>

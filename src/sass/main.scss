@@ -9,6 +9,7 @@
 
 @import "components/buttons";
 @import "components/card";
+@import "components/filter";
 @import "components/footer";
 @import "components/header";
 @import "components/searchbar";
@@ -17,3 +18,5 @@
 @import "layout/grid";
 
 @import "pages/home";
+@import "pages/search-result";
+@import "pages/product";
