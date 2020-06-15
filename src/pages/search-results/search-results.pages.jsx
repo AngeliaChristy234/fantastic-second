@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-// REDUCERS
-import productReducer from '../../redux/product/product.reducer';
-
 // REDUX SELECTORS
 import { productsSelector } from '../../redux/product/product.selector';
 
@@ -14,10 +11,51 @@ import ProductCard from '../../components/cards/product-card/product-card';
 
 class SearchResultsPage extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.INITIAL_DATA = {
+      elektronik: {
+        id: 'E01',
+        items: [
+          {
+            name: 'Iphone 7',
+            price: 6000000,
+            stock: 6,
+            image: '../../assets/img/dummy.jpg'
+          },
+          {
+            name: 'Macbook Pro 16 Inci 2017',
+            price: 12000000,
+            stock: 12,
+            image: '../../assets/img/dummy.jpg'
+          },
+          {
+            name: 'Macbook Pro 13 Inci 2017',
+            price: 10000000,
+            stock: 10,
+            image: '../../assets/img/dummy.jpg'
+          },
+        ]
+      },
+      fashion: {
+        id: 'F01',
+        items: [
+          {
+            name: 'Topi stylish zaman now',
+            price: 25000,
+            stock: 25,
+            image: '../../assets/img/dummy.jpg'
+          }
+        ]
+      }
+    }
+  }
+  
+
   render({ searchKeyword }) {
     const { products } = this.props;
-
-    console.log(products);
+    console.log(products)
 
     return (
       <div>
@@ -30,16 +68,15 @@ class SearchResultsPage extends React.Component {
         </section>
 
         <div className="NMrow">
-          {
-            products.items.map(item => (
-              <ProductCard
-                productName = {item.name}
-                productPrice = {item.price}
-                productStock = {item.stock}
-                productImage = {item.image}
-              />
-            ))
-          }
+            
+        <ProductCard
+          productName = {products.name}
+          productPrice = {products.price}
+          productStock = {products.stock}
+          productImage = {products.image}
+        />
+            
+          
         </div>
 
         <section class="section__serupa u-pad--body">
@@ -52,7 +89,10 @@ class SearchResultsPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  products: productsSelector()
+  products: productsSelector
 })
 
-export default connect(mapStateToProps)(SearchResultsPage);
+const thisClass = new SearchResultsPage;
+console.log(mapStateToProps(thisClass.INITIAL_DATA))
+
+export default connect(mapStateToProps(thisClass.INITIAL_DATA))(SearchResultsPage);

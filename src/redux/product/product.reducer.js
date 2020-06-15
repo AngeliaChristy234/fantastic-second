@@ -1,6 +1,3 @@
-import { productsSelector } from './product.selector';
-import { createStructuredSelector } from 'reselect';
-
 const INITIAL_DATA = {
   elektronik: {
     id: 'E01',
@@ -45,7 +42,5 @@ const productReducer = (state = INITIAL_DATA, action) => {
       return state;
   }
 }
-const allProducts = productsSelector(INITIAL_DATA);
-console.log(allProducts);
 
 export default productReducer;
