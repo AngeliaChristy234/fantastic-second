@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 // REDUX SELECTORS
-import { productsSelector } from '../../redux/product/product.selector';
+import { productsSelector, testsSelector } from '../../redux/product/product.selector';
+import { getProducts } from '../../redux/product/product.reducer';
 
 // REACT COMPONENTS
 import Filters from '../../components/filter/filter.component';
@@ -53,9 +54,7 @@ class SearchResultsPage extends React.Component {
   }
   
 
-  render({ searchKeyword }) {
-    const { products } = this.props;
-    console.log(products)
+  render({ searchKeyword, products }) {
 
     return (
       <div>
@@ -68,14 +67,21 @@ class SearchResultsPage extends React.Component {
         </section>
 
         <div className="NMrow">
-            
+
         <ProductCard
           productName = {products.name}
-          productPrice = {products.price}
-          productStock = {products.stock}
-          productImage = {products.image}
         />
-            
+
+        {
+          products.map(item => (
+          <ProductCard
+            productName = {item}
+            productPrice = {item.price}
+            productStock = {item.stock}
+            productImage = {item.image}
+          />
+          ))
+        }
           
         </div>
 
@@ -93,6 +99,9 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const thisClass = new SearchResultsPage;
+
 console.log(mapStateToProps(thisClass.INITIAL_DATA))
+
+// ini kayak nggak ke pass ke SearchResultsPagenya, tp kalau di log udh ada
 
 export default connect(mapStateToProps(thisClass.INITIAL_DATA))(SearchResultsPage);
