@@ -17,8 +17,8 @@ class App extends React.Component {
       <div>
         <Header/>
           <Switch>
-            <Route exact path='/' component={Homepage}/>
-            <Route exact path='/:search-term' component={SearchResultsPage} />
+            <Route exact path='/' component={ Homepage }/>
+            <Route exact path='/results' component={ SearchResultsPage } />
           </Switch>
         <Footer/>
       </div>
