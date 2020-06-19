@@ -4,6 +4,7 @@ export const styleSpacing = ({
   spacingSmall: '2rem',
   spacingMedium: '4rem',
   spacingBig: '8rem',
+  spacingMega: '15rem',
   spacingHuge: '20rem'
 })
 

@@ -1,5 +1,6 @@
 import { css } from '@emotion/core';
 import { styleColors, boxShadows } from '../../styles/abstracts';
+import { styleSpacing } from '../../styles/utils';
 
 const Styles = ({
   container: css({
@@ -8,6 +9,7 @@ const Styles = ({
     top: '0',
     left: '0',
     width: '100%',
+    height: styleSpacing.spacingBig,
     padding: '2rem',
     backgroundColor: styleColors.white,
     boxShadow: boxShadows.point8

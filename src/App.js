@@ -8,6 +8,7 @@ import Footer from './components/footer/footer.component';
 // All Pages
 import Homepage from './pages/homepage/homepage.pages';
 import SearchResultsPage from './pages/search-results/search-results.pages';
+import ProductPage from './pages/productpage/productpage.pages';
 
 import './App.scss';
 
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={ Homepage }/>
             <Route exact path='/results' component={ SearchResultsPage } />
+            <Route exact path='/products' component={ ProductPage } />
           </Switch>
         <Footer/>
       </div>

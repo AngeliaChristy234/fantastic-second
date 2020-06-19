@@ -1,3 +1,12 @@
+// CSS LIBRARIES
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import { Row, Col } from 'antd';
+
+// STYLES
+import Styles from './search-results.styles';
+
+// PACKAGES
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -17,33 +26,66 @@ class SearchResultsPage extends React.Component {
     console.log(products.map(item => item))
 
     return (
-      <div>
-        <section class="section__result-top">
-          <h3 class="heading--tertiary--thin">Hasil pencaharian untuk {products.name}</h3>
+      <div css={Styles.container}>
+
+      {/* The Top Sweetener and Filters */}
+
+        <section css={Styles.topPart}>
+          <h4>Hasil pencaharian untuk "{products.name}"</h4>
+          <Filters />
         </section>
 
-        <section class="section__filter filter u-pad--body">
-          <Filters/>
+      {/* Products From Search Input */}
+
+        <section css={Styles.searchResults}>
+          <Row gutter={24}>
+            {
+              products.map(item => item.map(single => (
+                <Col className="gutter-row" span={6}>
+                  <ProductCard
+                    productName= {single.name}
+                    productPrice= {single.price}
+                    productStock= {single.stock}
+                    productImage= {single.image}
+                  />
+                </Col>
+              ))) 
+            }
+            {
+              products.map(item => item.map(single => (
+                <Col className="gutter-row" span={6}>
+                  <ProductCard
+                    productName= {single.name}
+                    productPrice= {single.price}
+                    productStock= {single.stock}
+                    productImage= {single.image}
+                  />
+                </Col>
+              ))) 
+            }
+          </Row>
         </section>
 
-        <div className="NMrow">
-          {
-           products.map(item => item.map(single => (
-            <ProductCard
-              productName= {single.name}
-              productPrice= {single.price}
-              productStock= {single.stock}
-              productImage= {single.image}
-            />
-           ))) 
-          }
-          
-        </div>
+      {/* Related Products */}
 
-        <section class="section__serupa u-pad--body">
-          <h3 class="heading--tertiary--thin">Sejenis 'hello'</h3>
-          <ProductCard/>
+        <section css={Styles.relatedProducts}>
+          <h4>Sejenis {products.name}</h4>
+          <Row gutter={24}>
+            {
+              products.map(item => item.map(single => (
+                <Col className="gutter-row" span={6}>
+                  <ProductCard
+                    productName= {single.name}
+                    productPrice= {single.price}
+                    productStock= {single.stock}
+                    productImage= {single.image}
+                  />
+                </Col>
+              ))) 
+            }
+          </Row>
         </section>
+
       </div>
     )
   }

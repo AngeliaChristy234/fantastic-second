@@ -1,22 +1,38 @@
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import { Row, Col, Button } from 'antd';
+
+import { styleSpacing } from '../../styles/utils';
+
 import React from 'react';
 
+const Styles = css({
+  marginTop: styleSpacing.spacingSmall,
+  textAlign: 'center'
+})
+
 const Filters = () => (
-  <div>
-    <div class="filter__kondisi">
-      <h4 class="text--small">Kondisi</h4>
-      <button class="button__filter">90%</button>
-      <button class="button__filter">70%</button>
-      <button class="button__filter">50%</button>
-      <button class="button__filter">20%</button>
-    </div>
-    <div class="filter__harga">
-      <h4 class="text--small">Harga</h4>
-      <button class="button__filter">12jt</button>
-      <button class="button__filter">10jt</button>
-      <button class="button__filter">8jt</button>
-      <button class="button__filter">4jt</button>
-    </div>
-  </div>
+  <Row gutter={{ sm: 40, lg: 400 }} css={Styles}>
+    <Col span={12}>
+      <h5>Kondisi</h5>
+      <Row justify="space-between" className="gutter-row">
+        <Col span={6}><Button size='middle'>90%</Button></Col>
+        <Col span={6}><Button size='middle'>70%</Button></Col>
+        <Col span={6}><Button size='middle'>50%</Button></Col>
+        <Col span={6}><Button size='middle'>20%</Button></Col>
+      </Row>
+    </Col>
+
+    <Col span={12}>
+      <h5>Harga</h5>
+      <Row justify="space-between" className="gutter-row">
+        <Col span={6}><Button size='middle'>12jt</Button></Col>
+        <Col span={6}><Button size='middle'>10jt</Button></Col>
+        <Col span={6}><Button size='middle'>8jt</Button></Col>
+        <Col span={6}><Button size='middle'>4jt</Button></Col>
+      </Row>      
+    </Col>
+  </Row>
 )
 
 export default Filters;
