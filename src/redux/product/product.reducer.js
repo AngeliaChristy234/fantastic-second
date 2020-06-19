@@ -6,19 +6,19 @@ const INITIAL_DATA = {
         name: 'Iphone 7',
         price: 6000000,
         stock: 6,
-        image: '../../assets/img/dummy.jpg'
+        image: 'https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg'
       },
       {
         name: 'Macbook Pro 16 Inci 2017',
         price: 12000000,
         stock: 12,
-        image: '../../assets/img/dummy.jpg'
+        image: 'https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg'
       },
       {
         name: 'Macbook Pro 13 Inci 2017',
         price: 10000000,
         stock: 10,
-        image: '../../assets/img/dummy.jpg'
+        image: 'https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg'
       },
     ]
   },
@@ -29,7 +29,7 @@ const INITIAL_DATA = {
         name: 'Topi stylish zaman now',
         price: 25000,
         stock: 25,
-        image: '../../assets/img/dummy.jpg'
+        image: 'https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg'
       }
     ]
   }

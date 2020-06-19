@@ -1,36 +1,48 @@
-import React from 'react';
+import LogoTop from '../../assets/img/logo-top-invert.svg';
+
+// CSS LIBRARIES
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+
+// STYLES
+import Styles from './footer.styles';
+
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
-      <div>
-        <img src="img/logo-top-dark.png" alt="" class="footer__logo" />
+      <div css={Styles.container}>
+        <img src={LogoTop} alt="logo" css={Styles.logo} style={{width: '20%'}}/>
 
-        <div class="footer__tentang">
+        <div css={Styles.about}>
           <span>
-            <a href="#" className="heading--tertiary text--white">
+            <Link href='https://google.com'>
               Tentang Fantastic Second
-            </a>
+            </Link>
           </span>
-          <a href="#" className="footer__tentang--li">Cara memesan</a>
-          <a href="#" className="footer__tentang--li">Akun Tokopedia</a>
-          <a href="#" className="footer__tentang--li">Ongkir dan pengiriman</a>
-          <a href="#" className="footer__tentang--li u-mar__btm--mini">Testimoni</a>
+          <Link href="#" >Cara memesan</Link>
+          <Link href="#" >Akun Tokopedia</Link>
+          <Link href="#" >Ongkir dan pengiriman</Link>
+          <Link href="#" >Testimoni</Link>
 
-          <span>
-            <a href="#" className="heading--tertiary text--white">
+          <span css={Styles.miniHeading}>
+            <Link href="#">
               Jual Barang Bekas Anda
-            </a>
+            </Link>
           </span>
-          <a href="#" className="footer__tentang--li">Cara dan prosedur menjual</a>
+          <Link href="#" >Cara dan prosedur menjual</Link>
         </div>
 
-        <div className="footer__kontak">
-          <a href="#" className="footer__kontak--li">Hubungi kami</a>
-          <a href="#" className="footer__kontak--li">ask@fantasticsecond.com</a>
-          <a href="#" className="footer__kontak--li u-mar__btm--mini">021-651 3169</a>
+        <div css={Styles.contact}>
+          <span>
+            <Link href="#"  >Hubungi kami</Link>
+          </span>
+          
+          <Link href="#" >ask@fantasticsecond.com</Link>
+          <Link href="#" >021-651 3169</Link>
 
-          <a href="#" className="footer__kontak--li">@fantastic.second</a>
-          <a href="#" className="footer__kontak--li">copyright reserved</a>
-          <a href="#" className="footer__kontak--li">read our privacy policy</a>
+          <Link href="#" css={Styles.miniHeading} >@fantastic.second</Link>
+          <Link href="#" >copyright reserved</Link>
+          <Link href="#" >read our privacy policy</Link>
         </div>
       </div>
 )

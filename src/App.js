@@ -9,7 +9,7 @@ import Footer from './components/footer/footer.component';
 import Homepage from './pages/homepage/homepage.pages';
 import SearchResultsPage from './pages/search-results/search-results.pages';
 
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
   render () {
