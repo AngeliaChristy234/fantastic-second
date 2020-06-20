@@ -36,7 +36,7 @@ class Homepage extends React.Component {
       {/* Big Banner */}
 
         <section css={Styles.banner}>
-          <img src={ImgForBanner}/>
+          <img src={ImgForBanner} alt=''/>
           <h2>
             <span>Barang second</span>
             <span>Kondisi mantap!</span>
@@ -115,13 +115,13 @@ class Homepage extends React.Component {
                 </div>
               </Col>
               <Col className="gutter-row right-1" span={12}>
-                <img src="https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg"/>
+                <img src="https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg" alt=''/>
               </Col>
             </Row>
 
             <Row>
               <Col className="gutter-row left-2" span={12}>
-                <img src="https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg" />
+                <img src="https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg" alt='' />
               </Col>
               <Col className="gutter-row right-2" span={12}>
                 <div>
@@ -134,13 +134,13 @@ class Homepage extends React.Component {
               <Col className="gutter-row left-3" span={12}>
                 <div>
                   <h3>Beli langsung di web</h3>
-                  <img src={LogoSds}/>
+                  <img src={LogoSds} alt=''/>
                 </div>
               </Col>
               <Col className="gutter-row right-3" span={12}>
                 <div>
                   <h3>atau beli di Tokopedia</h3>
-                  <img src={LogoTokopedia}/>
+                  <img src={LogoTokopedia} alt=''/>
                 </div>
               </Col>
             </Row>

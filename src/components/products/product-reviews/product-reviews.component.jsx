@@ -1,7 +1,7 @@
 // CSS LIBRARIES
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { Row, Col, Divider} from 'antd';
+import { Row, Col} from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 
 import { styleSpacing } from '../../../styles/utils'
