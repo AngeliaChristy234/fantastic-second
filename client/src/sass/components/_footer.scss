@@ -1,0 +1,38 @@
+.footer {
+  width: 100%;
+  height: 45vh;
+  background-color: $color-secondary-dark;
+  padding-top: 8rem;
+  position: relative;
+
+  &__tentang {
+    float: left;
+
+    &--li {
+      display: block;
+      color: $color-secondary-light;
+      font-weight: 100;
+    }
+
+    span {
+      margin-top: 2rem;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+
+    @include absCenter;
+  }
+
+  &__kontak {
+    float: right;
+
+    &--li {
+      display: block;
+      color: $color-secondary-light;
+      font-weight: 100;
+      text-align: right;
+    }
+  }
+}

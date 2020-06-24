@@ -1,0 +1,27 @@
+[class^="section"] {
+  margin-top: 8rem;
+}
+
+.section {
+  &__result-top {
+    margin-top: 13rem;
+    text-align: center;
+  }
+
+  &__filter {
+    margin-top: 5rem;
+    height: 1rem;
+  }
+
+  &__search-result {
+    
+  }
+
+  &__serupa {
+    margin-bottom: 8rem;
+
+    .heading--tertiary--thin {
+      margin-bottom: 5rem;
+    }
+  }
+}
