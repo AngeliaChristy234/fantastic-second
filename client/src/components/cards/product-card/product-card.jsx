@@ -5,6 +5,14 @@ import { jsx, css } from '@emotion/core';
 import { styleColors, styleFonts, boxShadows } from '../../../styles/abstracts';
 import { styleSpacing } from '../../../styles/utils';
 
+// PACKAGES
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
+// REDUX
+import { storeCurrentlyViewed } from '../../../redux/product/product.actions';
+
 const Styles = css({
   position: 'relative',
   width: '100%',
@@ -48,24 +56,47 @@ const Styles = css({
     right: '0',
     margin: '0 1rem 0 0',
     fontsize: styleFonts.sizeMini,
-    fontsize: '1.4rem',
     fontWeight: styleFonts.weightDefault
   }
 
 })
 
-const ProductCard = ({ productName, productPrice, productStock, productImage }) => {
-  return (
-    <div css={Styles}>
-      <img
-        src={productImage}
-        alt=""
-      />
-      <span className='name'>{productName}</span>
-      <span className='price'>Rp.{productPrice}</span>
-      <span className='stock'>sisa {productStock}</span>
-    </div>
-  )
+class ProductCard extends React.Component {
+
+  fetchProductAndItems(id, storeViewedItem) {
+    const obj = {id}
+
+    axios.post('http://localhost:5000/api/product-to-view', obj)
+    .then(function (response) {    
+      console.log(response.data);
+      storeViewedItem(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  render() {
+    const { productName, productPrice, productStock, productImage, productId, storeViewedItem } = this.props
+            
+    return (
+      <div css={Styles} onClick={() => {
+        this.fetchProductAndItems(productId, storeViewedItem)
+      }}>
+        <img
+          src={productImage}
+          alt={ productName }
+        />
+        <span className='name'>{ productName }</span>
+        <span className='price'>Rp.{ productPrice }</span>
+        <span className='stock'>sisa { productStock }</span>
+      </div>
+    )
+  }
 }
 
-export default ProductCard; 
+const mapDispatchToProps = dispatch => ({
+  storeViewedItem: (productId) => dispatch(storeCurrentlyViewed(productId))
+})
+
+export default connect(null, mapDispatchToProps)(ProductCard);

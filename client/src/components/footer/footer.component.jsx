@@ -2,7 +2,7 @@ import LogoTop from '../../assets/img/logo-top-invert.svg';
 
 // CSS LIBRARIES
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 
 // STYLES
 import Styles from './footer.styles';

@@ -5,7 +5,7 @@ import LogoTokopedia from '../../assets/img/Tokopedia.png';
 
 // CSS LIBRARIES
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import { Row, Col } from 'antd';
 
 // STYLES
@@ -13,11 +13,7 @@ import Styles from './homepage.styles';
 
 // PACKAGES
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-// REDUX SELECTORS
-import { productsSelector } from '../../redux/product/product.selector';
+import axios from 'axios';
 
 // REACT COMPONENTS
 import BigTitleCard from '../../components/cards/big-title-card/big-title-card.component';
@@ -26,9 +22,34 @@ import TestimonyCard from '../../components/cards/testimony-card/testimony-card.
 import { Link } from 'react-router-dom';
 
 class Homepage extends React.Component {
-  render () {
+  constructor() {
+    super()
+    this.fetchProducts = this.fetchProducts.bind(this);
 
-    const {products} = this.props;
+    this.state = {
+      items: []
+    }
+  }
+
+  fetchProducts() {
+    let state = this;
+
+    axios.get('http://localhost:5000/api/products')
+    .then(function (response) {      
+      console.log(response.data);
+      state.setState({ items: response.data})
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  componentDidMount(){
+    this.fetchProducts()
+  }
+
+  render () {
+    const { items } = this.state;
 
     return (
       <div css={Styles.container}>
@@ -65,30 +86,18 @@ class Homepage extends React.Component {
         <section css={Styles.newItems}>
           <h3>Barang terbaru</h3>
           <Row gutter={24}>
-            {
-              products.map(item => item.map(single => (
-                <Col className="gutter-row" span={6}>
-                  <ProductCard
-                    productName= {single.name}
-                    productPrice= {single.price}
-                    productStock= {single.stock}
-                    productImage= {single.image}
-                  />
-                </Col>
-              ))) 
-            }
-            {
-              products.map(item => item.map(single => (
-                <Col className="gutter-row" span={6}>
-                  <ProductCard
-                    productName= {single.name}
-                    productPrice= {single.price}
-                    productStock= {single.stock}
-                    productImage= {single.image}
-                  />
-                </Col>
-              ))) 
-            }
+           {
+             items.map(item => (
+              <Col className="gutter-row" span={6}>
+                <ProductCard
+                  productName= {item.name}
+                  productPrice= {item.price}
+                  productStock= {item.stocklevel}
+                  productImage= {item.image}
+                />
+            </Col>
+             ))
+           }
           </Row>
           <Link className='link'>Lihat lainnya</Link>
         </section>
@@ -151,26 +160,4 @@ class Homepage extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  products: productsSelector
-})
-
-
-export default connect(mapStateToProps)(Homepage);
-
-
-// <section class="section__testimoni u-pad--body">
-// <h2 class="heading--secondary">Kata Pelanggan</h2>
-// <div class="row animate--left">
-//   <TestimonyCard
-  // productName
-  // testimony
-  // personName
-  // image
-//   />
-// </div>
-// </section>
-
-// <section class="section__kelebihan">
-// <SectionKelebihan/>
-// </section>
+export default Homepage;

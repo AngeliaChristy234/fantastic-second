@@ -1,32 +1,59 @@
 // CSS LIBRARIES
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import {Row, Col} from 'antd';
+import {Row} from 'antd';
 
 // STYLES
 import Styles from './productpage.styles';
 
 // PACKAGES
 import React from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 // REACT COMPONENTS
 import ProductDetails from '../../components/products/product-details/product-details.component';
 import ProductDescription from '../../components/products/product-description/product-description';
 import ProductReviews from '../../components/products/product-reviews/product-reviews.component';
-import ProductCard from '../../components/cards/product-card/product-card';
+// import ProductCard from '../../components/cards/product-card/product-card';
 
 // REDUX SELECTORS
-import { productsSelector } from '../../redux/product/product.selector';
+import { beingViewedSelector } from '../../redux/product/product.selector';
 
 class ProductPage extends React.Component {
+  constructor() {
+    super()
+    this.fetchProductAndItems = this.fetchProductAndItems.bind(this)
+
+    this.state = {
+
+    }
+  }
+
+  fetchProductAndItems(id) {
+    const obj = {id}
+
+    axios.post('http://localhost:5000/api/product-to-view', obj)
+    .then(function (response) {      
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  componentDidMount (id) {
+    this.fetchProductAndItems(id)
+  }
 
   render() {
-    const {products} = this.props;
+    const { viewedProductId } = this.props;
 
     return (
       <div css={Styles.container}>
+      {
+        this.componentDidMount(viewedProductId)
+      }
 
       {/* Images, Condition, Price, Quality, Buttons */}
 
@@ -52,16 +79,16 @@ class ProductPage extends React.Component {
           <h5>Lihat barang lainnya</h5>
           <Row gutter={24}>
             {
-              products.map(item => item.map(single => (
-                <Col className="gutter-row" span={6}>
-                  <ProductCard
-                    productName= {single.name}
-                    productPrice= {single.price}
-                    productStock= {single.stock}
-                    productImage= {single.image}
-                  />
-                </Col>
-              ))) 
+              // products.map(item => item.map(single => (
+              //   <Col className="gutter-row" span={6}>
+              //     <ProductCard
+              //       productName= {single.name}
+              //       productPrice= {single.price}
+              //       productStock= {single.stock}
+              //       productImage= {single.image}
+              //     />
+              //   </Col>
+              // ))) 
             }
           </Row>
         </section>
@@ -70,9 +97,9 @@ class ProductPage extends React.Component {
     )
   }
 }
-const mapStateToProps = createStructuredSelector({
-  products: productsSelector
-})
 
+const mapStateToProps = state => ({
+  viewedProductId: beingViewedSelector(state)
+})
 
 export default connect(mapStateToProps)(ProductPage);

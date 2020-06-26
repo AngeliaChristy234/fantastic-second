@@ -4,7 +4,7 @@ import { Row, Col, Button } from 'antd';
 
 import { styleSpacing } from '../../styles/utils';
 
-import React from 'react';
+// import React from 'react';
 
 const Styles = css({
   marginTop: styleSpacing.spacingSmall,

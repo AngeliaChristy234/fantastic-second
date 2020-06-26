@@ -14,7 +14,7 @@ db.connect((err) => {
 // GET PRODUCTS
 const getProducts = async () => {
   return new Promise((resolve, reject) => {
-    db.query('SELECT * FROM products', (err, results) => {
+    db.query('SELECT products.name, items.price, items.stocklevel, products.image FROM products INNER JOIN items ON items.product_id=products.product_id;', (err, results) => {
       if(err) {
         return reject;
       }
@@ -22,6 +22,8 @@ const getProducts = async () => {
     })
   })
 }
+
+
 
 // GET ITEMS
 const getItems = async () => {
@@ -36,11 +38,10 @@ const getItems = async () => {
 }
 
 module.exports = (app) => {
-
   app.get('/api/products', async (req, res) => {
     try {
-      const siswa = await getProducts();
-      res.json(siswa)
+      const products = await getProducts();
+      res.json(products)
     } catch (e) {
       console.log(e);
       res.sendStatus(500)
@@ -57,4 +58,35 @@ module.exports = (app) => {
     }
   })
 
+  app.post('/api/product-from-search', (req, res) => {
+    const valueArr = req.body.valueArr;
+    
+    if (valueArr.length > 0){
+      const sql =
+      `SELECT products.name, products.image, items.item_id, items.product_id, items.price, items.stocklevel FROM products INNER JOIN items ON items.product_id=products.product_id WHERE name LIKE "%${valueArr[0]}%" OR name LIKE "%${valueArr[1]}%";`
+      return db.query(sql, (err, results) => {
+        if (err) throw err;
+        res.send(results)
+      })
+    }
+
+    const sql =
+    `SELECT products.name, products.image, items.item_id, items.product_id, items.price, items.stocklevel FROM products INNER JOIN items ON items.product_id=products.product_id WHERE name LIKE "%${valueArr[0]}%";`
+    
+    db.query(sql, (err, results) => {
+      if (err) throw err;
+      res.send(results)
+    })
+  })
+
+  app.post('/api/product-to-view', (req, res) => {
+    const id = req.body.id
+
+    const sql = `SELECT * FROM products INNER JOIN items ON items.product_id=products.product_id WHERE items.product_id = ${id}`
+
+    db.query(sql, (err, results) => {
+      if (err) throw err;
+      res.send(results)
+    })
+  })
 }

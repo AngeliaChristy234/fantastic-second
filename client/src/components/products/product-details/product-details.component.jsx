@@ -1,14 +1,16 @@
+import LogoSds from '../../../assets/img/logo-sds.svg';
+
 // CSS LIBRARIES
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import { Row, Col, Button, InputNumber} from 'antd';
+import { jsx } from '@emotion/core';
+import { Row, Col, Button} from 'antd';
 
 
 // STYLES
 import Styles from './product-details.styles';
 
 // PACKAGES
-import React from 'react';
+// import React from 'react';
 
 const ProductDetails = () => (
   <div>
@@ -63,13 +65,12 @@ const ProductDetails = () => (
           { /* Buy / Add to Cart Button */}
           <Row className='buy'>
             <Col span={12}>
-              <h5>Beli barang</h5>
-              <InputNumber min={1} max={12} className='input'/>
-              <Button>Tambah ke keranjang</Button>
+              <h5>Beli barang di</h5>
+              <img src={LogoSds} alt='fantastic second'/>
             </Col>
             <Col span={12}>
               <h5>atau beli melalui</h5>
-              <img src='https://upload.wikimedia.org/wikipedia/commons/a/a7/Tokopedia.svg'/>
+              <img src='https://upload.wikimedia.org/wikipedia/commons/a/a7/Tokopedia.svg' alt="logo tokopedia"/>
             </Col>
           </Row>
 

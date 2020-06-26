@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import { styleColors, styleFonts } from '../../styles/abstracts';
+// import { styleColors, styleFonts } from '../../styles/abstracts';
 import { styleSpacing } from '../../styles/utils';
 
 const Styles = ({

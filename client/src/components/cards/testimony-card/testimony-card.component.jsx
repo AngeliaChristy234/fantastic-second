@@ -2,7 +2,7 @@
 import { jsx, css } from '@emotion/core';
 
 // STYLES
-import { styleColors, styleFonts, boxShadows } from '../../../styles/abstracts';
+import { styleColors, boxShadows } from '../../../styles/abstracts';
 
 const Styles = css({
   position: 'relative',
