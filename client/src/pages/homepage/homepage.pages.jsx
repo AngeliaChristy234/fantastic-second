@@ -35,8 +35,7 @@ class Homepage extends React.Component {
     let state = this;
 
     axios.get('http://localhost:5000/api/products')
-    .then(function (response) {      
-      console.log(response.data);
+    .then(function (response) {       
       state.setState({ items: response.data})
     })
     .catch(function (error) {

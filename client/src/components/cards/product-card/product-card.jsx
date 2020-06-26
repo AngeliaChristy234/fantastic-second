@@ -7,7 +7,6 @@ import { styleSpacing } from '../../../styles/utils';
 
 // PACKAGES
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 // REDUX
@@ -63,17 +62,8 @@ const Styles = css({
 
 class ProductCard extends React.Component {
 
-  fetchProductAndItems(id, storeViewedItem) {
-    const obj = {id}
-
-    axios.post('http://localhost:5000/api/product-to-view', obj)
-    .then(function (response) {    
-      console.log(response.data);
-      storeViewedItem(response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+  handleRedirect(id, name) {
+    window.location.href = `/product/${id}/${name}`;
   }
 
   render() {
@@ -81,7 +71,8 @@ class ProductCard extends React.Component {
             
     return (
       <div css={Styles} onClick={() => {
-        this.fetchProductAndItems(productId, storeViewedItem)
+        storeViewedItem(productId, productName)
+        this.handleRedirect(productId, productName)
       }}>
         <img
           src={productImage}
@@ -96,7 +87,7 @@ class ProductCard extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  storeViewedItem: (productId) => dispatch(storeCurrentlyViewed(productId))
+  storeViewedItem: (productId, productName) => dispatch(storeCurrentlyViewed(productId, productName))
 })
 
 export default connect(null, mapDispatchToProps)(ProductCard);

@@ -81,12 +81,16 @@ module.exports = (app) => {
 
   app.post('/api/product-to-view', (req, res) => {
     const id = req.body.id
+    
+    if(id) {
+      const sql = `SELECT * FROM products INNER JOIN items ON items.product_id=products.product_id WHERE items.product_id = ${id}`
 
-    const sql = `SELECT * FROM products INNER JOIN items ON items.product_id=products.product_id WHERE items.product_id = ${id}`
+      return db.query(sql, (err, results) => {
+        if (err) throw err;
+        res.send(results)
+      })
+    }
+    return null;
 
-    db.query(sql, (err, results) => {
-      if (err) throw err;
-      res.send(results)
-    })
   })
 }

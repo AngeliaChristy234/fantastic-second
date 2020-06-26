@@ -11,6 +11,7 @@ import SearchResultsPage from './pages/search-results/search-results.pages';
 import ProductPage from './pages/productpage/productpage.pages';
 // import CheckoutPage from './pages/checkoutpage/checkoutpage.pages';
 // import SignLogCard from './components/cards/signlog-card/signlog-card';
+import ProductCard_2 from './components/cards/product-card-2/product-card-2.component';
 
 import './App.scss';
 
@@ -22,7 +23,8 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={ Homepage }/>
             <Route exact path='/results' component={ SearchResultsPage } />
-            <Route exact path='/product' component={ ProductPage } />
+            <Route exact path='/product/:productid/:productname' component={ ProductPage } />
+            <Route exact path='/test' component={ ProductCard_2 }/>
           </Switch>
         <Footer/>
       </div>
@@ -32,4 +34,3 @@ class App extends React.Component {
 
 export default App;
 // <Route exact path='/checkout' component={ CheckoutPage }/>
-// <Route exact path='/test' component={ SignLogCard }/>

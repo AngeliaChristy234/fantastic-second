@@ -11,7 +11,7 @@ export const storeSearchValue = (searchKeyword, searchResult) => ({
   }
 })
 
-export const storeCurrentlyViewed = (viewedProduct) => ({
+export const storeCurrentlyViewed = (id, name) => ({
   type: productActionTypes.CURRENTLY_VIEWED,
-  payload: viewedProduct
+  payload: {id, name}
 })
