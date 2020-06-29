@@ -34,8 +34,8 @@ class Homepage extends React.Component {
   fetchProducts() {
     let state = this;
 
-    axios.get('http://localhost:5000/api/products')
-    .then(function (response) {       
+    axios.get('/api/products')
+    .then(function (response) {
       state.setState({ items: response.data})
     })
     .catch(function (error) {
@@ -89,6 +89,7 @@ class Homepage extends React.Component {
              items.map(item => (
               <Col className="gutter-row" span={6}>
                 <ProductCard
+                  productId={item.product_id}
                   productName= {item.name}
                   productPrice= {item.price}
                   productStock= {item.stocklevel}

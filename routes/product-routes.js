@@ -1,20 +1,10 @@
-const mysql = require('mysql')
 const { resolve } = require('upath');
 const { rejects } = require('assert');
-const mysqlCONFIG = require('../config/mysql-db').mysqlCONFIG
-
-const db = mysql.createConnection(mysqlCONFIG)
-db.connect((err) => {
-  if(err) {
-    console.log(err);
-  }
-  console.log('My SQL connected')
-})
 
 // GET PRODUCTS
-const getProducts = async () => {
+const getProducts = async (db) => {
   return new Promise((resolve, reject) => {
-    db.query('SELECT products.name, items.price, items.stocklevel, products.image FROM products INNER JOIN items ON items.product_id=products.product_id;', (err, results) => {
+    db.query('SELECT products.product_id, products.name, items.price, items.stocklevel, products.image FROM products INNER JOIN items ON items.product_id=products.product_id;', (err, results) => {
       if(err) {
         return reject;
       }
@@ -23,10 +13,8 @@ const getProducts = async () => {
   })
 }
 
-
-
 // GET ITEMS
-const getItems = async () => {
+const getItems = async (db) => {
   return new Promise((resolve, reject) => {
     db.query('SELECT * FROM items', (err, results) => {
       if(err) {
@@ -37,10 +25,10 @@ const getItems = async () => {
   })
 }
 
-module.exports = (app) => {
+module.exports = (app, db) => {
   app.get('/api/products', async (req, res) => {
     try {
-      const products = await getProducts();
+      const products = await getProducts(db);
       res.json(products)
     } catch (e) {
       console.log(e);
@@ -50,8 +38,8 @@ module.exports = (app) => {
 
   app.get('/api/items', async (req, res) => {
     try {
-      const siswa = await getItems();
-      res.json(siswa)
+      const items = await getItems(db);
+      res.json(items)
     } catch (e) {
       console.log(e);
       res.sendStatus(500)

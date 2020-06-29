@@ -56,7 +56,7 @@ class SearchResultsPage extends React.Component {
 
         <section css={Styles.searchResults}>
           <Row gutter={24}>
-            { this.renderCards(beingSearch) }
+            { this.renderCards( beingSearch ) }
           </Row>
         </section>
 

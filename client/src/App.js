@@ -13,20 +13,24 @@ import ProductPage from './pages/productpage/productpage.pages';
 // import SignLogCard from './components/cards/signlog-card/signlog-card';
 import ProductCard_2 from './components/cards/product-card-2/product-card-2.component';
 
+import Navigation from './backend/navigation/navigation.component';
+import Kategori from './backend/kategori-sub/kategori-sub.component';
+
 import './App.scss';
 
 class App extends React.Component {
   render () {
     return (
       <div>
-        <Header/>
+        { (window.location.href !== "http://localhost:3000/admin" ? <Header/>:null) }
           <Switch>
+            <Route exact path='/admin' component={ Kategori } />
             <Route exact path='/' component={ Homepage }/>
             <Route exact path='/results' component={ SearchResultsPage } />
             <Route exact path='/product/:productid/:productname' component={ ProductPage } />
             <Route exact path='/test' component={ ProductCard_2 }/>
           </Switch>
-        <Footer/>
+          { (window.location.href !== "http://localhost:3000/admin" ? <Footer/>:null) }
       </div>
     )
   }

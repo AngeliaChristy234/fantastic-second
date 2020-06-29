@@ -40,7 +40,7 @@ class ProductPage extends React.Component {
   componentDidMount (id, name) { 
     const state = this;
 
-    axios.post('http://localhost:5000/api/product-to-view', { id })
+    axios.post('/api/product-to-view', { id })
     .then(function (response) {
       const items = response.data,
             productImage = items.map( i => i.image)[0],
@@ -75,7 +75,6 @@ class ProductPage extends React.Component {
 
     return (
       <div css={Styles.container}>
-      <button onClick={() => console.log(this.state)}> Loggg</button>
       {/* Images, Condition, Price, Quality, Buttons */}
 
         <section css={Styles.details}>

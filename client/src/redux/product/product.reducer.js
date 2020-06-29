@@ -4,6 +4,7 @@ const INITIAL_DATA = {
   beingSearch: {},
   beingViewed: {}
 }
+
 const productReducer = (state = INITIAL_DATA, action) => {
   switch(action.type) {
     case productActionTypes.CURRENTLY_SEARCH:

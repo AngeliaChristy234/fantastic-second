@@ -16,7 +16,8 @@ const Styles = ({
   }),
 
   logo: css({
-    width: '90%'
+    width: '90%',
+    cursor: 'pointer'
   }),
 
   nav: css({
@@ -24,11 +25,17 @@ const Styles = ({
   }),
 
   kategori: css({
-    margin: '0 3rem 0 8rem'
+    margin: '0',
+    border: 'none',
+    width: '100%',
+
+    '& .ant-menu-submenu-title': {
+      margin: '0'
+    }
   }),
   
   searchBar: css({
-    width: '60%'
+    width: '100%'
   }),
 
   icon: css({
