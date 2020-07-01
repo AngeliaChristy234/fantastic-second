@@ -1,6 +1,7 @@
 import { Layout, Menu } from 'antd';
 import {
-  PieChartOutlined
+  BranchesOutlined,
+  TagFilled
 } from '@ant-design/icons';
 
 
@@ -20,13 +21,25 @@ class Navigation extends React.Component {
   };
 
   render() {
+    const { openKeys } = this.props    
+    
     return (
       <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" icon={<PieChartOutlined />}>Kategori & sub Kategori</Menu.Item>
-          <Menu.Item key="2" icon={<PieChartOutlined />}>Produk & item</Menu.Item>
-          <Menu.Item key="3" icon={<PieChartOutlined />}>Semua Kategori</Menu.Item>
-          <Menu.Item key="4" icon={<PieChartOutlined />}>Semua Produk</Menu.Item>
+        <Menu theme="dark" defaultSelectedKeys={[openKeys]} mode="inline">
+          <Menu.Item
+            key="1"
+            icon={<BranchesOutlined />}
+            onClick={() => window.location.href = '/admin/category'}
+          >
+            Kategori & sub Kategori
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            icon={<TagFilled />}
+            onClick={() => window.location.href = '/admin/product'}
+          >
+            Produk & item
+          </Menu.Item>
         </Menu>
       </Sider>
     )

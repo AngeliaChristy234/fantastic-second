@@ -1,6 +1,6 @@
 // ASSETS
 import LogoSds from '../../assets/img/logo-sds.svg';
-import { AppstoreOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 // CSS LIBRARIES
 /** @jsx jsx */

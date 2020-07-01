@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import { styleColors, boxShadows } from '../../styles/abstracts';
+import { boxShadows } from '../../styles/abstracts';
 import { styleSpacing } from '../../styles/utils';
 
 const DetailStyles = ({

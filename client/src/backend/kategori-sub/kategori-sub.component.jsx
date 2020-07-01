@@ -1,13 +1,10 @@
-import { Layout, Menu, Input, Button, Cascader, message, Row, Col, Divider } from 'antd';
+import { Layout, Menu, Input, Button, Cascader, message, Row, Col } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
 import React from 'react';
 import axios from 'axios';
 
 import Navigation from '../navigation/navigation.component';
-
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 
 class Kategori extends React.Component {
   constructor() {
@@ -45,29 +42,34 @@ class Kategori extends React.Component {
   }
 
   handlePostCat() {
-    const { newcat } = this.state,
-          obj = {
-            name: newcat
-          }
+    const { newcat } = this.state
+    if (newcat === '' ) {
+      return message.info('isi kategori')
+    }
+
+    const obj = {name: newcat}
           
     axios.post('/api/add_categories', obj)
       .then( response => {
-        this.fetchSubCategories()
+        this.fetchCategories()
         this.setState({newcat: ''})
       })
       .catch( err => console.log(err))
   }
 
   handlePostSubCat() {
-    const { newsubcat, choosencat } = this.state,
-          obj = {
+    const { newsubcat, choosencat } = this.state
+    if (newsubcat === '' || choosencat === '') {
+      return message.info('isi sub kategori')
+    }
+    const obj = {
             name: newsubcat,
             category_id: choosencat[0]
           }
           
     axios.post('/api/add_categories_sub', obj)
       .then( response => {
-        this.fetchCategories()
+        this.fetchSubCategories()
         this.setState({newsubcat: '', choosencat: ''})
       })
       .catch( err => console.log(err))
@@ -93,17 +95,13 @@ class Kategori extends React.Component {
       .catch(err => console.log(err))
   }
 
-  
-
   renderData() {
     const { categories, subcat } = this.state;
 
     if(categories.length > 0 && subcat.length > 0){
 
       return categories.map( c => {
-        const listOfSubcats = subcat.filter(e => e.category_id === c.id),
-              subcatNoCat = subcat.filter(e => e !== listOfSubcats)
-        console.log(subcatNoCat);
+        const listOfSubcats = subcat.filter(e => e.category_id === c.id)
         
         return <React.Fragment>
             <Col span={12}>
@@ -134,28 +132,41 @@ class Kategori extends React.Component {
               }
 
             </Col>
-            <Col span={12}>
-              <p style={{display: 'inline'}}>other</p>
-              <Button
-                icon={<DeleteOutlined />}
-                size='small'
-                style={{float: 'right'}}
-                onClick={() => this.handleDeleteCat(c.id)}
-              />
-            </Col>
-            <Col span={12}>
-              <p style={{display: 'inline'}}>other</p>
-              <Button
-                icon={<DeleteOutlined />}
-                size='small'
-                style={{float: 'right'}}
-                onClick={() => this.handleDeleteCat(c.id)}
-              />
-            </Col>
-
           </React.Fragment>
       })
     }
+  }
+
+  renderSubcatNoCat() {
+    const {subcat} = this.state;
+    const otherSubcats = subcat.filter( e => e.category_id === null)
+
+    return (
+      <React.Fragment>
+        <Col span={12}>
+          <p style={{display: 'inline'}}>lainnya</p>
+        </Col>
+        <Col span={12}>             
+          {
+            otherSubcats.map(e =>
+              ( 
+                <div style={{display: 'block', marginBottom: '2rem'}}>
+                  <p style={{display: 'inline'}}>{e.id} - {e.name}</p>
+                  <Button
+                    icon={<DeleteOutlined />}
+                    size='small'
+                    style={{float: 'right'}}
+                    onClick={() => this.handleDeleteSubCat(e.id)}
+                  />
+                </div>
+              )
+            )
+          }
+        </Col>
+      </React.Fragment>
+    )
+
+    
   }
 
   componentDidMount() {
@@ -186,7 +197,7 @@ class Kategori extends React.Component {
 
     return (
       <Layout style={{ minHeight: '100vh'}}>
-        <Navigation/>
+        <Navigation openKeys='1'/>
 
         <Layout className="site-layout">
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
@@ -235,6 +246,11 @@ class Kategori extends React.Component {
               </Col>
               {
                 this.renderData()
+              }
+              {
+                (subcat.length > 0)
+                ? this.renderSubcatNoCat()
+                : null
               }
             </Row>
           </div>

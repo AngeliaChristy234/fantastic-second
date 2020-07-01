@@ -15,19 +15,18 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 // REACT COMPONENTS
-import ProductDescription from '../../components/products/product-description/product-description';
 import ProductCard_2 from '../../components/cards/product-card-2/product-card-2.component'
 import ProductReviews from '../../components/products/product-reviews/product-reviews.component';
-// import ProductCard from '../../components/cards/product-card/product-card';
 
 // REDUX SELECTORS
 import { beingViewedSelector } from '../../redux/product/product.selector';
 
 class ProductPage extends React.Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
+    
     this.state = {
+      productId: this.props.match.params.productId,
       items: [],
       productImage: '',
       condition: [],
@@ -37,11 +36,13 @@ class ProductPage extends React.Component {
     }
   }
 
-  componentDidMount (id, name) { 
-    const state = this;
+  componentDidMount () { 
+    const state = this
 
-    axios.post('/api/product-to-view', { id })
+    axios.post('/api/product-to-view', { id: this.state.productId})
     .then(function (response) {
+      console.log(response.data);
+      
       const items = response.data,
             productImage = items.map( i => i.image)[0],
             condition = items.map(i => i.condition).sort() ,
@@ -70,13 +71,11 @@ class ProductPage extends React.Component {
     const { viewedProduct } = this.props;
     const { items, productImage, condition, lowestprice, highestPrice, totalStock } = this.state
 
-    const { productid, productname } = this.props.match.params
-    this.componentDidMount( productid, productname)
-
+    const { productname } = this.props.match.params
+    
     return (
       <div css={Styles.container}>
       {/* Images, Condition, Price, Quality, Buttons */}
-
         <section css={Styles.details}>
           <Row justify="start">
 

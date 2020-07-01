@@ -34,7 +34,7 @@ class Homepage extends React.Component {
   fetchProducts() {
     let state = this;
 
-    axios.get('/api/products')
+    axios.get('/api/products-latest')
     .then(function (response) {
       state.setState({ items: response.data})
     })

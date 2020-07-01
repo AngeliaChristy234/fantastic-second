@@ -8,9 +8,6 @@ import { Row, Col, Carousel, Button} from 'antd';
 import { styleColors } from '../../../styles/abstracts';
 import { styleSpacing } from '../../../styles/utils'
 
-// PACKAGES
-import React from 'react';
-
 const Styles = css({
   width: '100%',
   border: '0.1px solid',

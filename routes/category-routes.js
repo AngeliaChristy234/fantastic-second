@@ -83,10 +83,15 @@ module.exports = (app, db) => {
     const data = req.body.id;
     
     const sql = `DELETE FROM categories WHERE id = ${data}`
+    const sql2 = `UPDATE categories_sub SET category_id = NULL WHERE category_id = ${data} `
 
     db.query(sql, (err, results) => {
       if (err) throw err;
-      res.send(results)
+      
+      db.query(sql2, (err, results) => {
+        if (err) throw err;
+        res.send(results)
+      })
     })
   })
   
@@ -100,6 +105,7 @@ module.exports = (app, db) => {
       if (err) throw err;
       res.send(results)
     })
+
   })
 
 }
