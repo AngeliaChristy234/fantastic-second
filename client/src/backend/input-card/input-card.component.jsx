@@ -106,7 +106,6 @@ class InputCard extends React.Component {
     return allSubCat.map( e => (
       <Option value={e.id}>{e.name}</Option>
     ))
-
   }
 
   handlePostUpdate() {
@@ -134,8 +133,12 @@ class InputCard extends React.Component {
       })
   }
 
+  handleRedirect(cat, subcat, id) {
+    window.location.href = `/admin/edit/${cat}/${subcat}/${id}`;
+  }
+
   render() {
-    const { name, category, subcat, tokopedia, image, subcatId } = this.state
+    const { name, category, subcat, tokopedia, image, subcatId, productId } = this.state
     const { categories, subcats } = this.state
 
     return (
@@ -147,7 +150,7 @@ class InputCard extends React.Component {
           alt="example"
           src={image} 
         />
-        <Button onClick={() => console.log(this.state)}>Edit</Button>
+        <Button type='primary' onClick={() => this.handleRedirect(category, subcat, productId)}>Edit</Button>
         <Upload className='upload'>
           <Button>Click to upload</Button>
         </Upload>

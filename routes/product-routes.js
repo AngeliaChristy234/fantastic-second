@@ -3,10 +3,24 @@ const { rejects } = require('assert');
 
 const productsWithCat = 'SELECT p.product_id, p.name , p.image , p.tokopedia, p.category_sub_id, c.name as category, cs.name as subcat FROM products p INNER JOIN categories_sub cs ON p.category_sub_id = cs.id INNER JOIN categories c ON cs.category_id = c.id'
 
+const productsWithCatNull = 'SELECT p.product_id, p.name , p.image , p.tokopedia, p.category_sub_id FROM products p WHERE p.category_sub_id is NULL'
+
 // GET PRODUCTS
 const getProducts = async (db) => {
   return new Promise((resolve, reject) => {
     db.query( productsWithCat, (err, results) => {
+      if(err) {
+        return reject;
+      }
+      resolve(results);
+    })
+  })
+}
+
+// GET PRODUCTS WITH SUBCAT NULL
+const getProductsNull = async (db) => {
+  return new Promise((resolve, reject) => {
+    db.query( productsWithCatNull, (err, results) => {
       if(err) {
         return reject;
       }
@@ -40,11 +54,24 @@ const getItems = async (db) => {
 }
 
 module.exports = (app, db) => {
+  // ==============
+  // GET REQUEST
+  // ==============
 
-  // Products with it's categories
+  // Products with categories
   app.get('/api/products', async (req, res) => {
     try {
       const items = await getProducts(db);
+      res.json(items)
+    } catch (e) {
+      console.log(e);
+      res.sendStatus(500)
+    }
+  }),
+
+  app.get('/api/products_catnull', async (req, res) => {
+    try {
+      const items = await getProductsNull(db);
       res.json(items)
     } catch (e) {
       console.log(e);
@@ -74,7 +101,7 @@ module.exports = (app, db) => {
     }
   })
 
-  // Product and Items for card
+  // Product and Items from name, search keyword
   app.post('/api/product-from-search', (req, res) => {
     const valueArr = req.body.valueArr;
     
@@ -96,7 +123,7 @@ module.exports = (app, db) => {
     })
   })
 
-  // To get all attribute from products with its categories
+  // Product and categories from name, search keyword
   app.post('/api/product-from-name', (req, res) => {
     const name = req.body.name
     
@@ -117,7 +144,23 @@ module.exports = (app, db) => {
     })
   })
 
-  // Get product and items from ID
+  // Get product from ID
+  app.post('/api/product-from-id', (req, res) => {
+    const id = req.body.id
+    
+    if(id) {
+      const sql = `SELECT * FROM products WHERE products.product_id = ${id}`
+ 
+      return db.query(sql, (err, results) => {
+        if (err) throw err;
+        console.log(results);
+        
+        res.send(results)
+      })
+    }
+  })
+
+  // Get product with items from ID
   app.post('/api/product-to-view', (req, res) => {
     const id = req.body.id
     
@@ -126,30 +169,121 @@ module.exports = (app, db) => {
 
       return db.query(sql, (err, results) => {
         if (err) throw err;
-        
         res.send(results)
       })
     }
-    
-    return null;
   })
 
+  // ==============
+  // UPDATE REQUEST
+  // ==============
   app.post('/api/update-product', (req, res) => {
-    const body = req.body
+    const { id, name, category_sub_id, image, tokopedia } = req.body
 
     const data = {
-      name: body.name,
-      category_sub_id: body.category_sub_id,
-      image: body.image,
-      tokopedia: body.tokopedia
+      name,
+      category_sub_id,
+      image,
+      tokopedia,
     }
 
-    const sql = `UPDATE products SET ? WHERE product_id = ${body.id}`
+    const sql = `UPDATE products SET ? WHERE product_id = ${id}`
 
     db.query(sql, data, (err, results) => {
       if (err) throw err;
       res.send(results)
     })
   })
+
+  app.post('/api/update-item', (req, res) => {
+    const { item_id, condition, good, bad, price, stocklevel, item_images } = req.body
+
+    const data = {
+      condition,
+      good,
+      bad,
+      price,
+      stocklevel,
+      item_images
+    }
+
+    const sql = `UPDATE items SET ? WHERE item_id = ${item_id}`
+
+    db.query(sql, data, (err, results) => {
+      if (err) throw err;
+      res.send(results)
+    })
+  })
+
+  // ==============
+  // DELETE REQUEST
+  // ==============
+  app.post('/api/delete-product', (req, res) => {
+    const data = req.body.product_id;
+    
+    const sql = `DELETE FROM products WHERE product_id = ${data}`,
+          sql2 = `DELETE FROM items WHERE product_id = ${data}`
+
+    db.query(sql, (err, results) => {
+      if (err) throw err;
+      
+      db.query(sql2, (err, results) => {
+        if (err) throw err;
+        res.send(results)
+      })
+    })
+  })
+
+  app.post('/api/delete-item', (req, res) => {
+    const data = req.body.item_id;
+    
+    const sql = `DELETE FROM items WHERE item_id = ${data}`
+
+    db.query(sql, (err, results) => {
+      if (err) throw err;
+      res.send(results)
+    })
+  })
+
+  // ==============
+  // CREATE REQUEST
+  // ==============
+  app.post('/api/add-product', (req, res) => {
+    const { name, category_sub_id, image, tokopedia } = req.body
+
+    const data = {
+      name,
+      category_sub_id,
+      image,
+      tokopedia,
+    }
+
+    const sql = `INSERT INTO products SET ?`
+
+    db.query(sql, data, (err, results) => {
+      if (err) throw err;
+      res.send(results)
+    })
+  })
+
+  app.post('/api/add-item', async(req, res) => {
+    const { product_id, condition, good, bad, price, stocklevel, item_images } = req.body
+
+    const data = {
+      product_id,
+      condition,
+      good,
+      bad,
+      price,
+      stocklevel,
+      item_images
+    }
+    
+    const sql = 'INSERT INTO items SET ?'
   
+    db.query(sql, data, (err, results) => {
+      if (err) throw err;
+      res.send(results)
+    })
+  })
 }

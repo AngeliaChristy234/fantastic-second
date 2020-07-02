@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core';
 import { Card, Divider, Form, Input, Button } from 'antd';
 
 import { styleColors } from '../../../styles/abstracts';
-import { styleSpacing, absCenter } from '../../../styles/utils';
+import { absCenter, styleSpacing } from '../../../styles/utils';
 
 const Styles = ({
   container: css({
@@ -15,9 +15,7 @@ const Styles = ({
 
   card: css({
     position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    ...absCenter,
     textAlign: 'center',
     padding: '3rem',
 

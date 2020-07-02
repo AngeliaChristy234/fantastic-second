@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
-import { styleColors, styleFonts } from '../../styles/abstracts';
-import { styleSpacing } from '../../styles/utils';
+import { styleColors, styleFonts, boxShadows } from '../../styles/abstracts';
+import { mq, styleSpacing } from '../../styles/utils';
 
 const Styles = ({
   container: css({
@@ -8,11 +8,19 @@ const Styles = ({
       marginTop: styleSpacing.spacingBig,
       padding: '0 20rem',
 
+      [mq[1]]: {
+        padding: '0 1.5rem'
+      },
+
       '& h3': {
         fontSize: styleFonts.sizeMedium,
         fontWeight: styleFonts.weightDefault,
 
         marginBottom: styleSpacing.spacingMedium
+      },
+
+      '& .heading': {
+        textAlign: 'center'
       }
     },
 
@@ -25,32 +33,53 @@ const Styles = ({
     position: 'relative',
     height: '60vh',
     padding: '0 !important',
+    marginTop: '0 !important',
+
+    '& .carousel': {
+      height: '60vh'
+    },
 
     '& img': {
       position: 'absolute',
-      width: '100%',
+      width: '100vw',
       height: '100%',
       objectFit: 'cover'
     },
 
     '& h2': {
-      color: styleColors.primaryLight,
       position: 'absolute',
       right: '20rem',
       bottom: '5rem',
+      color: styleColors.white,
       fontsize: styleFonts.sizeHuge,
       fontSize: '6rem',
+      textShadow: boxShadows.point8,
+
+      [mq[0]]: {
+        textAlign: 'Left',
+        top: '0',
+        left: '0',
+        transform: 'translate(25%, 25%)'
+      },
 
       '& span': {
         display: 'block'
       }
     }
   }),
-
+  
   newItems: css({
-
     '& .link': {
-      textDecoration: 'underline'
+      textAlign: 'center',
+      textDecoration: 'underline',
+      cursor: 'pointer',
+      color: styleColors.primaryDark,
+      transition: 'all .5s ease', 
+
+      '&:hover': {
+        transform: 'translateY(-0.3rem)',
+        textShadow: boxShadows.point8,
+      }
     }
   }),
 
@@ -62,14 +91,24 @@ const Styles = ({
 
       '[class*="left"]': {
         padding: '0 0 0 20rem',
-        height: '100%'
+        height: '100%',
+
+        [mq[0]]: {
+          padding: '0'
+        }
       },
 
       '[class*="right"]': {
         padding: '0 20rem 0 0',
         height: '100%',
-        textAlign: 'right'
-      }
+        textAlign: 'right',
+
+        [mq[0]]: {
+          padding: '0'
+        }
+      },
+
+
     },
 
     '& .left-1, & .right-2': {
@@ -80,6 +119,7 @@ const Styles = ({
         float: 'right',
         height: '100%',
         width: '100%',
+        padding: styleSpacing.spacingSmall,
         backgroundColor: styleColors.white
       }
     },
@@ -97,18 +137,30 @@ const Styles = ({
     '& .left-3': {
       backgroundColor: styleColors.primaryLight,
       height: '35vh',
-      paddingTop: '3rem'
+      padding: styleSpacing.spacingSmall
     },
 
     '& .right-3': {
       backgroundColor: styleColors.primaryDark,
       height: '35vh',
-      paddingTop: '3rem',
+      padding: styleSpacing.spacingSmall,
 
       '& img': {
         width: '30%',
         marginTop: '-2rem'
-      }
+      },
+
+      [mq[0]]: {
+        textAlign: 'left',
+
+        '& img': {
+          width: 'auto',
+          height: '15rem',
+          marginTop: '-3rem',
+          marginLeft: '50%',
+          transform: 'translateX(-50%)'
+        },
+      },
     }
   })
 })

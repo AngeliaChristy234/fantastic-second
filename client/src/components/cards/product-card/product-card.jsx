@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core';
 
 // STYLES
 import { styleColors, styleFonts, boxShadows } from '../../../styles/abstracts';
-import { styleSpacing } from '../../../styles/utils';
+import { mq, styleSpacing } from '../../../styles/utils';
 
 // PACKAGES
 import React from 'react';
@@ -16,12 +16,12 @@ const Styles = css({
   position: 'relative',
   width: '100%',
   height: '30rem',
+  paddingBottom: styleSpacing.spacingSmall,
+  marginBottom: styleSpacing.spacingMedium,
   backgroundColor: styleColors.white,
   boxShadow: boxShadows.point5,
   color: styleColors.secondaryDark,
   fontFamily: styleFonts.secondary,
-  paddingBottom: styleSpacing.spacingSmall,
-  marginBottom: styleSpacing.spacingMedium,
   transition: 'all .5s ease', 
 
   '&:hover': {
@@ -56,6 +56,20 @@ const Styles = css({
     margin: '0 1rem 0 0',
     fontsize: styleFonts.sizeMini,
     fontWeight: styleFonts.weightDefault
+  },
+
+  [mq[0]]: {
+    height: 'auto',
+
+    '& .price, & .stock': {
+      position: 'relative',
+      display: 'block',
+      margin: '0 0 0 1rem'
+    }
+  },
+
+  [mq[1]]: {
+    height: 'auto'
   }
 
 })

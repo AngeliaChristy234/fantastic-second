@@ -1,3 +1,8 @@
+export const boxShadows = ({
+  point5:'0 6px 10px rgba(0,0,0, 0.05)',
+  point8:'0 6px 10px rgba(0,0,0, 0.08)'
+})
+
 export const styleColors = ({
   primaryLight:   '#C1A57B',
   primaryDark:    '#30475E',
@@ -20,10 +25,6 @@ export const styleFonts = ({
 
   weightLight: '100',
   weightDefault: '400',
+  weightMedium: '550',
   weightBold: '700'
-})
-
-export const boxShadows = ({
-  point5:'0 6px 10px rgba(0,0,0, 0.05)',
-  point8:'0 6px 10px rgba(0,0,0, 0.08)'
 })

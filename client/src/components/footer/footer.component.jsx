@@ -11,38 +11,38 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => (
       <div css={Styles.container}>
-        <img src={LogoTop} alt="logo" css={Styles.logo} style={{width: '20%'}}/>
+        <img src={LogoTop} alt="logo" css={Styles.logo}/>
 
         <div css={Styles.about}>
           <span>
-            <Link href='https://google.com'>
+            <h5 href='https://google.com'>
               Tentang Fantastic Second
-            </Link>
+            </h5>
           </span>
-          <Link href="#" >Cara memesan</Link>
-          <Link href="#" >Akun Tokopedia</Link>
-          <Link href="#" >Ongkir dan pengiriman</Link>
-          <Link href="#" >Testimoni</Link>
+          <h5 href="#" >Cara memesan</h5>
+          <h5 href="#" >Akun Tokopedia</h5>
+          <h5 href="#" >Ongkir dan pengiriman</h5>
+          <h5 href="#" >Testimoni</h5>
 
           <span css={Styles.miniHeading}>
-            <Link href="#">
+            <h5 href="#">
               Jual Barang Bekas Anda
-            </Link>
+            </h5>
           </span>
-          <Link href="#" >Cara dan prosedur menjual</Link>
+          <h5 href="#" >Cara dan prosedur menjual</h5>
         </div>
 
         <div css={Styles.contact}>
           <span>
-            <Link href="#"  >Hubungi kami</Link>
+            <h5 href="#"  >Hubungi kami</h5>
           </span>
           
-          <Link href="#" >ask@fantasticsecond.com</Link>
-          <Link href="#" >021-651 3169</Link>
+          <h5 href="#" >ask@fantasticsecond.com</h5>
+          <h5 href="#" >021-651 3169</h5>
 
-          <Link href="#" css={Styles.miniHeading} >@fantastic.second</Link>
-          <Link href="#" >copyright reserved</Link>
-          <Link href="#" >read our privacy policy</Link>
+          <h5 href="#" css={Styles.miniHeading} >@fantastic.second</h5>
+          <h5 href="#" >copyright reserved</h5>
+          <h5 href="#" >read our privacy policy</h5>
         </div>
       </div>
 )

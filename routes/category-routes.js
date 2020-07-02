@@ -83,14 +83,24 @@ module.exports = (app, db) => {
     const data = req.body.id;
     
     const sql = `DELETE FROM categories WHERE id = ${data}`
-    const sql2 = `UPDATE categories_sub SET category_id = NULL WHERE category_id = ${data} `
+    const sql2 = `
+      UPDATE products p
+      INNER JOIN categories_sub cs
+      SET p.category_sub_id = NULL 
+      WHERE cs.category_id = ${data}
+    `
+    const sql3 = `UPDATE categories_sub SET category_id = NULL WHERE category_id = ${data}`
 
     db.query(sql, (err, results) => {
       if (err) throw err;
       
       db.query(sql2, (err, results) => {
         if (err) throw err;
-        res.send(results)
+        
+        db.query(sql3, (err, results) => {
+          if (err) throw err;
+          res.send(results)
+        })
       })
     })
   })
@@ -100,10 +110,15 @@ module.exports = (app, db) => {
     const data = req.body.id;
     
     const sql = `DELETE FROM categories_sub WHERE id = ${data}`
+    const sql2 = `UPDATE products SET category_sub_id = NULL WHERE category_sub_id = ${data}`
 
     db.query(sql, (err, results) => {
       if (err) throw err;
-      res.send(results)
+
+      db.query(sql2, (err, results) => {
+        if (err) throw err;
+        res.send(results)
+      })
     })
 
   })

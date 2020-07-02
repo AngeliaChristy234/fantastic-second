@@ -54,7 +54,10 @@ class Kategori extends React.Component {
         this.fetchCategories()
         this.setState({newcat: ''})
       })
-      .catch( err => console.log(err))
+      .catch( err => {
+        console.log(err)
+        return message.error('tidak berhasil menambahkan kategori')
+      })
   }
 
   handlePostSubCat() {
@@ -90,9 +93,13 @@ class Kategori extends React.Component {
 
     axios.post('/api/delete_categories_sub', obj)
       .then(res => {
+        message.success('Berhasil dihapus!')
         this.fetchSubCategories()
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+        return message.error('gagal. Ulangi lagi')
+      })
   }
 
   renderData() {

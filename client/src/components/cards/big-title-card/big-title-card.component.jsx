@@ -2,27 +2,43 @@
 import { jsx, css } from '@emotion/core';
 
 // STYLES
-import { styleFonts, boxShadows } from '../../../styles/abstracts';
+import { boxShadows, styleFonts, styleColors } from '../../../styles/abstracts';
+import { absCenter, mq, styleSpacing } from '../../../styles/utils';
 
 const Styles = css({
 
   '& div': {
     position: 'relative',
-    backgroundImage: 'url("https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg")',
-    backgroundSize:'cover',
-    filter: 'blur(0.5px)',
-    transform: 'skew(-15deg, 0)',
+    display: 'inline-block',
+    textAlign: 'center',
+    transform: 'skew(-12deg, 0) translateX(10%)',
     width:'100%',
     height: '30rem',
     boxShadow: boxShadows.point8,
-    display: 'inline-block',
-    textAlign: 'center',
 
-    '& span': {
-      margin: '0 auto',
+    [mq[0]]: {
+      transform: 'skew(-12deg, 0) translateX(10%)'
+    },
+
+    [mq[1]]: {
+      width: '80%',
+      height: '25rem'
+    },
+
+    '& img': {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    },
+
+    '& h4': {
+      position: 'absolute',
+      ...absCenter,
+
       fontSize: styleFonts.sizeMedium,
-      fontWeight: styleFonts.weightBold,
-      filter: 'blur(0)'
+      fontWeight: styleFonts.weightMedium,
+      color: styleColors.secondaryLight,
+      textShadow: boxShadows.point5,
     }
   }
 })
@@ -30,7 +46,8 @@ const Styles = css({
 const BigTitleCard = ({ cardTitle }) => (
   <div css={Styles}>
     <div>
-      <span>{ cardTitle }</span>
+      <img src='https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg' />
+      <h4>{ cardTitle }</h4>
     </div>
   </div>
 )

@@ -2,23 +2,22 @@
 import { jsx } from '@emotion/core'
 import { Layout, Row, Col, Input, Select, Upload, Button, InputNumber, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import Styles from './product-item-edit.styles';
 
 import React from 'react';
 import axios from 'axios';
 
 import Navigation from '../navigation/navigation.component';
-import Styles from './product-item-edit.styles';
+import InputCardItem from '../input-card-item/input-card-item.component';
 
-const { Option } = Select,
-      { TextArea } = Input
 
+const { Option } = Select
 
 class EditProductItem extends React.Component {
   constructor(props) {
     super(props)
     this.fetchCategories = this.fetchCategories.bind(this)
     this.fetchSubCategories = this.fetchSubCategories.bind(this)
-    this.renderItemCard = this.renderItemCard.bind(this)
     this.handleCategoryChange =  this.handleCategoryChange.bind(this)
     this.handlePostUpdateProduct = this.handlePostUpdateProduct.bind(this)
 
@@ -66,24 +65,39 @@ class EditProductItem extends React.Component {
     this.fetchCategories()
     this.fetchSubCategories()
 
-    const state = this
-    axios.post('/api/product-to-view', { id: this.state.productId })
-    .then(function (response) {
-      const items = response.data,
-            name = items.map( i => i.name)[0],
-            productImage = items.map( i => i.image)[0],
-            price = items.map(i => i.price).sort(),
-            tokopedia = items.map(i => i.tokopedia)[0],
-            lowestprice = price.pop(),
-            highestPrice = price[0],
-            stockarr = items.map(i => i.stocklevel),
-            totalStock = stockarr.reduce((a, b) => a + b, 0)
+    const obj   = {id: this.state.productId },
+          state = this
 
-      state.setState({ items, name, productImage, tokopedia, lowestprice, highestPrice, totalStock })
+    axios.post('/api/product-to-view', obj )
+    .then(function (response) {
+      if(response.data.length > 0) {
+        const items        = response.data,
+              name         = items.map( i => i.name)[0],
+              productImage = items.map( i => i.image)[0],
+              price        = items.map(i => i.price).sort(),
+              tokopedia    = items.map(i => i.tokopedia)[0],
+              lowestprice  = price.pop(),
+              highestPrice = price[0],
+              stockarr     = items.map(i => i.stocklevel),
+              totalStock   = stockarr.reduce((a, b) => a + b, 0)
+
+        return state.setState({ items, name, productImage, tokopedia, lowestprice, highestPrice, totalStock })
+      }
+
+      axios.post('/api/product-from-id', obj )
+      .then( res => {
+        const items        = res.data,
+              name         = items.name,
+              productImage = items.image,
+              tokopedia    = items.tokopedia              
+        console.log(items)
+        
+        state.setState({ items, name, productImage, tokopedia })
+      })
+      .catch(err => console.log(err))
+
     })
-    .catch(function (error) {
-      console.log(error);
-    })
+    .catch(err => console.log(err))
   }
 
   handleCategoryChange(val) {
@@ -136,37 +150,6 @@ class EditProductItem extends React.Component {
     return relatedSubcats.map( e => (
       <Option value={e.id}>{e.name}</Option>
     ))
-  }
-
-  renderItemCard(i) {
-    let imageArray = i.item_images.split(', ')
-    
-    const imageGrid = imageArray.map( e => (
-      <div>
-        <img src={e}/>
-        <Button className='imgbtn' danger>Del Img</Button>
-      </div>
-    ))
-    
-    return (
-      <Row gutter={32} className='item-card'>
-      <Button type="primary" shape="circle" className='delbtn'>X</Button>
-        <Col span={10}>
-          <Upload className='uploadImg'><Button type='primary'><UploadOutlined/></Button></Upload>{imageGrid}
-        </Col>
-        <Col span={14}>
-          <h3>Item ID: {i.item_id}</h3>
-          <h3 className='makeinline'>Condition:</h3>
-          <Input value={i.condition} placeholder='masukan angka dengan %' className='smallInput'/>
-          <h3 className='makeinline'>Stock:</h3>
-          <InputNumber defaultValue={i.stocklevel} min={1} />
-          <h3>Good:</h3>
-          <TextArea value={i.good} placeholder='pisahkan poin dengan ,'/>
-          <h3>Bad:</h3>
-          <TextArea value={i.bad} placeholder='pisahkan poin dengan ,'/>
-        </Col>
-      </Row>
-    )
   }
 
   render() {
@@ -237,10 +220,27 @@ class EditProductItem extends React.Component {
 
             <section>
               <h3>Semua Item</h3>
-
-              { items.map(e => this.renderItemCard(e)) }
+              {
+                (totalStock)
+                ? items.map(e => (<InputCardItem item={e} />))
+                : null
+              }
             </section>
 
+            <section>
+              <h3>Tambah item baru: </h3>
+              <InputCardItem
+                item={{item_id: '',
+                       product_id: this.state.productId,
+                       condition: '',
+                       good: '',
+                       bad: '',
+                       price: '',
+                       stocklevel: '',
+                       item_images: '',
+                       addNew: true}}
+              />
+            </section>
 
           </div>
         </Layout>

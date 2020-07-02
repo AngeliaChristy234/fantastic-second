@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-import { Layout, Row, Col, Input, Button, Cascader, Table, Card } from 'antd';
+import { Layout, Row, Col, Input, Button, Select, Table, Card, message, Space } from 'antd';
 import Styles from './product-item.styles';
 
 import React from 'react';
@@ -9,20 +9,27 @@ import axios from 'axios';
 
 import Navigation from '../navigation/navigation.component';
 import InputCard from '../input-card/input-card.component';
+import InputCardProduct from '../input-card-product/input-card-product.component';
+
+const { Option } = Select;
 
 class Product extends React.Component {
   constructor() {
     super()
-    this.fetchProducts = this.fetchProducts.bind(this)
     this.handleNameSearch = this.handleNameSearch.bind(this)
 
     this.state = {
       allProducts: [],
-      filteredProducts: [],
+      nullProducts: [],
       allItems: [],
+
+      filteredProducts: [],
       nameKeyword: '',
       id: Number,
-      categoryId: Number
+      categoryId: Number,
+
+      categories: [],
+      subcats: []
     }
   }
 
@@ -31,6 +38,15 @@ class Product extends React.Component {
     axios.get('/api/products')
       .then( res => {
         state.setState({allProducts: res.data})
+      })
+      .catch(err => console.log(err))
+  }
+
+  fetchProductsCatnull() {
+    const state = this;
+    axios.get('/api/products_catnull')
+      .then( res => {
+        state.setState({nullProducts: res.data})
       })
       .catch(err => console.log(err))
   }
@@ -60,12 +76,45 @@ class Product extends React.Component {
     .catch(err => console.log(err))
   }
 
+  handleDeleteItem(id) {
+    axios.post('/api/delete-item', {item_id: id})
+      .then( res => {
+        return message.loading('menghapus') 
+      })
+      .then( res => {
+        const refresh = window.location.reload(false);
+        refresh()
+      })
+      .catch( err => {
+        console.log(err)
+        return message.error('gagal')
+      })
+  }
+
+  handleDeleteProduct(id) {
+    console.log(id);
+    
+    axios.post('/api/delete-product', {product_id: id})
+      .then( res => {
+        return message.loading('menghapus') 
+      })
+      .then( res => {
+        const refresh = window.location.reload(false);
+        refresh()
+      })
+      .catch( err => {
+        console.log(err)
+        return message.error('gagal')
+      })
+  }
+
   handleRedirect(cat, subcat, id) {
     window.location.href = `/admin/edit/${cat}/${subcat}/${id}`;
   }
 
   componentDidMount() {
     this.fetchProducts()
+    this.fetchProductsCatnull()
     this.fetchItems()
   }
 
@@ -80,11 +129,23 @@ class Product extends React.Component {
       title: 'Action',
       dataIndex: '',
       key: 'x',
-      render: (text, record) => <a onClick={() => this.handleRedirect(
-                                  record.category,
-                                  record.subcat,
-                                  record.product_id
-                                )}>Edit</a>,
+      render: (text, record) => (
+        <Space size='middle'>
+          <Button
+            type='primary'
+            onClick={() => this.handleRedirect(
+                            record.category,
+                            record.subcat,
+                            record.product_id
+                          )}
+          >Edit
+          </Button>
+          <Button
+            type='primary' danger
+            onClick={() => this.handleDeleteProduct(record.product_id)}
+          >X</Button>
+          </Space>
+        )
     },
   ];
 
@@ -99,12 +160,12 @@ class Product extends React.Component {
       title: 'Action',
       dataIndex: '',
       key: 'x',
-      render: () => <a>Edit</a>,
+      render: (text, record) => <Button danger onClick={ () => this.handleDeleteItem(record.item_id)}>X</Button>,
     },
   ];
 
   render() {
-    const { allProducts, filteredProducts, allItems, nameKeyword } = this.state;
+    const { allProducts, nullProducts, filteredProducts, allItems, nameKeyword, categories } = this.state;
 
     return (
       <Layout style={{ minHeight: '100vh'}}>
@@ -137,7 +198,7 @@ class Product extends React.Component {
               </Row>
               <Row gutter={[32, 12]}>
                 <Col span={12}>
-                  <Cascader
+                  <Select
                     size='large'
                     placeholder="Pilih kategori"
                   />
@@ -191,6 +252,21 @@ class Product extends React.Component {
                 scroll={{ x: 1300 }}
               />
             </section>
+            
+            <section>
+              <h3>Tanpa kategori</h3>
+              <Table 
+                columns={this.categoryColumns}
+                dataSource={nullProducts}
+                scroll={{ x: 1300 }}
+              />
+            </section>
+
+            <section>
+              <h2>Tambah produk</h2>
+              <InputCardProduct />
+            </section>
+
           </div>
         </Layout>
       </Layout>

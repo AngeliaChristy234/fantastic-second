@@ -91,14 +91,14 @@ class Header extends React.Component {
 
     return (
       <div>
-        <Row css={Styles.container}>
-          <Col span={5}>
+        <Row css={Styles.container} gutter={[{xs: 12, sm: 0}, 0]}>
+          <Col xs={7} sm={5}>
             <img src={LogoSds} alt='logo' css={Styles.logo} onClick={() => this.handleRedirect('/')}/>
           </Col>
           
-          <Col span={12} css={Styles.nav}>
+          <Col xs={16} md={12} css={Styles.nav}>
             <Row gutter={10}>
-              <Col span={8}>
+              <Col xs={0} sm={8}>
                 <Menu css={Styles.kategori} mode='inline'> 
                   <SubMenu title='Kategori'>
                     { 
@@ -107,7 +107,7 @@ class Header extends React.Component {
                   </SubMenu>
                 </Menu>
               </Col>
-              <Col span={16}>
+              <Col xs={24} sm={16}>
                 <Search
                   placeholder="Cari barang"
                   size="sm"
@@ -120,13 +120,6 @@ class Header extends React.Component {
             
 
           </Col>
-
-          <Col span={7} css={Styles.nav}>
-            <Button type="default" size='default' css={Styles.button}>Log In</Button>
-            <Button type="primary" size='default' css={Styles.button}>Sign In</Button>
-            <ShoppingCartOutlined css={Styles.icon} style={{fontSize: '3.5rem'}}/>
-            <HeartOutlined css={Styles.icon} style={{fontSize: '3.5rem'}}/>
-          </Col>
         </Row>
       </div>
     )
@@ -138,3 +131,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(Header);
+
+// <Col span={7} css={Styles.nav}>
+// <Button type="default" size='default' css={Styles.button}>Log In</Button>
+// <Button type="primary" size='default' css={Styles.button}>Sign In</Button>
+// <ShoppingCartOutlined css={Styles.icon} style={{fontSize: '3.5rem'}}/>
+// <HeartOutlined css={Styles.icon} style={{fontSize: '3.5rem'}}/>
+// </Col>

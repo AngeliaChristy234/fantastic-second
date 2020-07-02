@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 import { styleColors, styleFonts } from '../../styles/abstracts';
-import { styleSpacing, absCenter } from '../../styles/utils';
+import { absCenter, mq, styleSpacing } from '../../styles/utils';
 
 const Styles = ({
   container: css({
@@ -10,29 +10,68 @@ const Styles = ({
     paddingTop: '8rem',
     paddingRight: styleSpacing.spacingHuge,
     paddingLeft: styleSpacing.spacingHuge,
-    height: '45vh'
+    height: '45vh',
+
+    '& h5': {
+      cursor: 'pointer',
+      color: styleColors.secondaryLight
+    },
+
+    [mq[0]]: {
+      height: 'auto'
+    },
+
+    [mq[1]]: {
+      padding: '4rem 1.5rem'
+    }
   }),
 
-  logo: (absCenter),
-
-  about: css`
-    float: left;
-
-    > * {
-      display: block;
-      font-weight: 100;
+  logo: css({
+    ...absCenter,
+    width: '20%',
+    
+    [mq[0]]: {
+      position: 'relative',
+      top: '20px',
+      width: '50%',
+      marginBottom: styleSpacing.spacingSmall,
+      marginTop: styleSpacing.spacingSmall
     }
-  `, 
+  }),
 
-  contact: css`
-    float: right;
+  about: css({
+    float: 'left',
 
-    > * {
-      display: block;
-      text-align: right;
-      font-weight: 100;
+    '& > *': {
+      display: 'block',
+      fontWeight: styleFonts.weightLight
+    },
+
+    [mq[0]]: {
+      position: 'relative',
+      float: 'none',
     }
-  `,
+  }),
+
+  contact: css({
+    float: 'right',
+
+    '& > *': {
+      display: 'block',
+      textAlign: 'right',
+      fontWeight: styleFonts.weightLight
+    },
+
+    [mq[0]]: {
+      position: 'relative',
+      float: 'none',
+      marginTop: styleSpacing.spacingSmall,
+      
+      '& > *': {
+        textAlign: 'left'
+      }
+    }
+  }),
 
   miniHeading: css({
     marginTop: styleSpacing.spacingSmall,

@@ -2,12 +2,13 @@
 import { jsx, css } from '@emotion/core';
 
 // STYLES
-import { styleColors, boxShadows } from '../../../styles/abstracts';
+import { boxShadows, styleColors, styleFonts } from '../../../styles/abstracts';
+import { mq } from '../../../styles/utils';
 
 const Styles = css({
   position: 'relative',
   display: 'block',
-  transform: 'skew(-15deg, 0)',
+  transform: 'skew(-15deg, 0) translateX(10%)',
   width: '40%',
   height: '25rem',
   backgroundColor: styleColors.secondaryLight,
@@ -33,7 +34,8 @@ const Styles = css({
     top: '22%',
     right: '1%',
     display: 'block',
-    maxWidth: '50%'
+    maxWidth: '50%',
+    fontWeight: styleFonts.weightMedium
   },
 
   '& .personName': {
@@ -41,6 +43,36 @@ const Styles = css({
     bottom: '8%',
     right: '5%',
     margin: '2% 5% 0 0'
+  },
+
+  [mq[0]]: {
+    
+    textAlign: 'center'
+  },
+
+  [mq[1]]: {
+    height: 'auto',
+    width: '80%',
+
+    '& img': {
+      position: 'relative',
+      width: '100%',
+      height: '40%'
+    },
+
+    '& .productName, & .testimony, & .personName': {
+      position: 'relative',
+      float: 'none',
+      display: 'block',
+      bottom: '0',
+      right: '0',
+      margin: '0.2rem 1rem',
+      maxWidth: '100%'
+    },
+
+    '& .personName': {
+      textAlign: 'right'
+    }
   }
 })
 

@@ -23,47 +23,6 @@ const Styles = css({
 
     '& .select': {
       marginRight: styleSpacing.spacingMedium,
-    },
-
-    '& .item-card': {
-      position: 'relative',
-      padding: styleSpacing.spacingSmall,
-      backgroundColor: styleColors.white,
-      marginBottom: styleSpacing.spacingSmall,
-
-      '& .makeinline': {
-        display: 'inline',
-        marginRight: styleSpacing.spacingSmall,
-      },
-
-      '& .smallInput': {
-        width: '20%',
-        marginRight: styleSpacing.spacingSmall
-      },
-
-      '& img': {
-        display: 'block',
-        width: '40%',
-        height: '15rem',
-        border: 'Gainsboro 1px solid',
-        marginRight: styleSpacing.spacingSmall
-      },
-
-      '& .imgbtn': {
-        width: '40%',
-        marginBottom: styleSpacing.spacingSmall
-      },
-
-      '& .uploadImg': {
-        float: 'right',
-        display: 'block'
-      },
-
-      '& .delbtn': {
-        position: 'absolute',
-        right: styleSpacing.spacingSmall,
-        top: styleSpacing.spacingSmall
-      }
     }
   }
 })

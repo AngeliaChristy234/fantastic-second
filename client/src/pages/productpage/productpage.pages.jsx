@@ -103,8 +103,12 @@ class ProductPage extends React.Component {
 
                 <Row>
                   <Col span={12}>
-                    <h5>Kisaran harga berdasarkan stok yang ada:</h5>
-                    <h3>Rp { this.makeRupiah(lowestprice) } - { this.makeRupiah( highestPrice) }</h3>
+                  <h5>Kisaran harga berdasarkan stok yang ada:</h5>
+                  {
+                    (lowestprice && highestPrice)
+                    ? <h3>Rp { this.makeRupiah(lowestprice) } - { this.makeRupiah( highestPrice) }</h3>
+                    : null
+                  }
                   </Col>
                   <Col span={12}>
                     <h5>Sisa stok:</h5>
