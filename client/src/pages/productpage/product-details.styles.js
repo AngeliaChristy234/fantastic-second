@@ -1,9 +1,10 @@
 import { css } from '@emotion/core';
 import { boxShadows } from '../../styles/abstracts';
-import { styleSpacing } from '../../styles/utils';
+import { mq, styleSpacing } from '../../styles/utils';
 
 const DetailStyles = ({
   images: css({ 
+      marginBottom: styleSpacing.spacingMedium,
       height: '40rem',
       boxShadow: boxShadows.point5,
   
@@ -17,6 +18,9 @@ const DetailStyles = ({
 
   details: css({
     marginLeft: styleSpacing.spacingMedium,
+    [mq[0]]: {
+      marginLeft: '0'
+    },
     '& .quality': {
 
       '& h5': {

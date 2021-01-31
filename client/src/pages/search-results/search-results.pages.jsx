@@ -23,7 +23,7 @@ class SearchResultsPage extends React.Component {
 
     if (items.searchResult.length !== 0) {
       return items.searchResult.map(item => (
-        <Col className="gutter-row" span={6}>
+        <Col className="gutter-row" xs={12} md={8} lg={6}>
           <ProductCard
             key={item.item_id}
             productId = {item.product_id}
@@ -41,21 +41,21 @@ class SearchResultsPage extends React.Component {
 
   render() {
     const { beingSearch } = this.props;    
-
+    
     return (
       <div css={Styles.container}>
 
       {/* The Top Sweetener and Filters */}
 
         <section css={Styles.topPart}>
-          <h4>Hasil pencaharian untuk ""</h4>
+          <h4>Hasil pencaharian untuk "{beingSearch.searchKeyword}"</h4>
           <Filters />
         </section>
 
       {/* Products From Search Input */}
 
         <section css={Styles.searchResults}>
-          <Row gutter={24}>
+          <Row gutter={[16, { xs: 8, sm: 16, md: 24}]}>
             { this.renderCards( beingSearch ) }
           </Row>
         </section>
@@ -63,7 +63,7 @@ class SearchResultsPage extends React.Component {
       {/* Related Products */}
 
         <section css={Styles.relatedProducts}>
-          <h4>Sejenis</h4>
+          <h4>Sejenis "{beingSearch.searchKeyword}"</h4>
           <Row gutter={24}>
           </Row>
         </section>

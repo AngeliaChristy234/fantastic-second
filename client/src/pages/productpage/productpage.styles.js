@@ -1,10 +1,10 @@
 import { css } from '@emotion/core';
-import { styleSpacing } from '../../styles/utils';
+import { pagePadding, styleSpacing } from '../../styles/utils';
 
 const Styles = ({
   container: css({
     marginTop: styleSpacing.spacingBig,
-    padding: '0 20rem'
+    ...pagePadding
   }),
 
   details: css({

@@ -81,7 +81,7 @@ class ProductPage extends React.Component {
 
           { /* Big Product Image on Left */}
 
-            <Col span={10}>
+            <Col xs={24} sm={10}>
               <div css={DetailStyles.images}>
                 <img src={productImage} alt="dummy"/>
               </div>
@@ -89,7 +89,7 @@ class ProductPage extends React.Component {
 
           { /* All Details About The Product*/}
 
-            <Col span={14}>
+            <Col xs={24} sm={14}>
               <div css={DetailStyles.details}>
                 <h1>{productname}</h1>
               { /* Quality */}
@@ -107,7 +107,7 @@ class ProductPage extends React.Component {
                   {
                     (lowestprice && highestPrice)
                     ? <h3>Rp { this.makeRupiah(lowestprice) } - { this.makeRupiah( highestPrice) }</h3>
-                    : null
+                    : <h3>Rp { this.makeRupiah(lowestprice) }</h3>
                   }
                   </Col>
                   <Col span={12}>
@@ -143,14 +143,14 @@ class ProductPage extends React.Component {
 
         <section css={Styles.description}>
         <h5>Pilih barang yang anda inginkan</h5>
-          <Row gutter={20}>
+          <Row gutter={[16, { xs: 8, sm: 16, md: 24}]}>
             {
               items.map(i => {
                 const index = items.findIndex((e) => e.item_id === i.item_id ) + 1,
                       rupiah = this.makeRupiah(i.price)
                 
                 return (
-                  <Col span={8}>
+                  <Col xs={24} sm={12} md={8}>
                     <h5>Barang {index}</h5>
                     <ProductCard_2 item={i} rupiah={rupiah} />
                   </Col>

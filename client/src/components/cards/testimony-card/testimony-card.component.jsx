@@ -12,7 +12,7 @@ const Styles = css({
   width: '40%',
   height: '25rem',
   backgroundColor: styleColors.secondaryLight,
-  boxShadow: boxShadows.point5,
+  boxShadow: boxShadows.point5, 
 
   '& img': {
     float: 'left',
@@ -53,11 +53,13 @@ const Styles = css({
   [mq[1]]: {
     height: 'auto',
     width: '80%',
+    overflow: 'hidden',
 
     '& img': {
       position: 'relative',
-      width: '100%',
-      height: '40%'
+      width: '130%',
+      height: '40%',
+      transform: 'skew(15deg, 0) translate(-10%)'
     },
 
     '& .productName, & .testimony, & .personName': {

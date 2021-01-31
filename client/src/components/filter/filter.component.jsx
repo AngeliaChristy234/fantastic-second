@@ -13,7 +13,7 @@ const Styles = css({
 
 const Filters = () => (
   <Row gutter={{ sm: 40, lg: 400 }} css={Styles}>
-    <Col span={12}>
+    <Col xs={24} sm={12}>
       <h5>Kondisi</h5>
       <Row justify="space-between" className="gutter-row">
         <Col span={6}><Button size='middle'>90%</Button></Col>
@@ -23,7 +23,7 @@ const Filters = () => (
       </Row>
     </Col>
 
-    <Col span={12}>
+    <Col xs={24} sm={12}>
       <h5>Harga</h5>
       <Row justify="space-between" className="gutter-row">
         <Col span={6}><Button size='middle'>12jt</Button></Col>

@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 import { styleColors, styleFonts } from '../../styles/abstracts';
-import { absCenter, mq, styleSpacing } from '../../styles/utils';
+import { absCenter, absCenterX, mq, styleSpacing } from '../../styles/utils';
 
 const Styles = ({
   container: css({
@@ -32,10 +32,9 @@ const Styles = ({
     
     [mq[0]]: {
       position: 'relative',
-      top: '20px',
+      ...absCenterX,
       width: '50%',
-      marginBottom: styleSpacing.spacingSmall,
-      marginTop: styleSpacing.spacingSmall
+      marginBottom: styleSpacing.spacingMedium
     }
   }),
 

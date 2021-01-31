@@ -1,16 +1,12 @@
 import { css } from '@emotion/core';
 import { styleColors, styleFonts, boxShadows } from '../../styles/abstracts';
-import { mq, styleSpacing } from '../../styles/utils';
+import { absCenterX, mq, pagePadding, styleSpacing } from '../../styles/utils';
 
 const Styles = ({
   container: css({
     '& section': {
       marginTop: styleSpacing.spacingBig,
-      padding: '0 20rem',
-
-      [mq[1]]: {
-        padding: '0 1.5rem'
-      },
+      ...pagePadding,
 
       '& h3': {
         fontSize: styleFonts.sizeMedium,
@@ -59,7 +55,7 @@ const Styles = ({
         textAlign: 'Left',
         top: '0',
         left: '0',
-        transform: 'translate(25%, 25%)'
+        transform: 'translate(25%, 0)'
       },
 
       '& span': {
@@ -67,7 +63,7 @@ const Styles = ({
       }
     }
   }),
-  
+
   newItems: css({
     '& .link': {
       textAlign: 'center',
@@ -114,6 +110,13 @@ const Styles = ({
     '& .left-1, & .right-2': {
       backgroundColor: styleColors.primaryLight,
       fontSize: styleFonts.sizeMedium,
+      overflow: 'overlay',
+
+      [mq[0]]: {
+        '& h2': {
+          fontsize: styleFonts.sizeSmall
+        }
+      },
 
       '& div': {
         float: 'right',

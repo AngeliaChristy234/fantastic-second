@@ -15,6 +15,7 @@ const Styles = css({
     width:'100%',
     height: '30rem',
     boxShadow: boxShadows.point8,
+    overflow: 'hidden',
 
     [mq[0]]: {
       transform: 'skew(-12deg, 0) translateX(10%)'
@@ -26,9 +27,10 @@ const Styles = css({
     },
 
     '& img': {
-      width: '100%',
+      width: '130%',
       height: '100%',
-      objectFit: 'cover'
+      objectFit: 'cover',
+      transform: 'skew(12deg, 0) translate(-10%)'
     },
 
     '& h4': {
@@ -39,14 +41,15 @@ const Styles = css({
       fontWeight: styleFonts.weightMedium,
       color: styleColors.secondaryLight,
       textShadow: boxShadows.point5,
+      textTransform: 'capitalize'
     }
   }
 })
 
-const BigTitleCard = ({ cardTitle }) => (
+const BigTitleCard = ({ cardTitle, backImg }) => (
   <div css={Styles}>
     <div>
-      <img src='https://m.ayosemarang.com/images-semarang/post/articles/2020/03/19/53883/ipad-pro-review-featured.jpg' />
+      <img src={ backImg } />
       <h4>{ cardTitle }</h4>
     </div>
   </div>

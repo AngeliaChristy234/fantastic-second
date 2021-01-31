@@ -47,6 +47,22 @@ class Homepage extends React.Component {
     this.fetchProducts()
   }
 
+  imageBanner = [
+    'https://images.unsplash.com/photo-1526745925052-dd824d27b9ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'https://images.unsplash.com/photo-1576602976047-174e57a47881?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80'
+  ]
+  categoryPack = [
+    {
+    name: 'elektronik',
+    img: 'https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2020-03%2F73515600-6ef3-11ea-9f4f-064b19b6d6f7&client=a1acac3e1b3290917d92&signature=eb9c25548102132b76c0e6cfc4c6b521d4719d06'
+    }, {
+      name: 'stationery',
+      img: 'https://images.unsplash.com/photo-1510936994138-07e06c7c5add?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+    }, {
+      name: 'fashion',
+      img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+    }]
+
   render () {
     const { items } = this.state;
 
@@ -58,8 +74,8 @@ class Homepage extends React.Component {
 
         <section css={Styles.banner}>
           <Carousel >
-            <div className='carousel'><img src={ImgForBanner} alt=''/></div>
-            <div className='carousel'><img src={ImgForBanner} alt=''/></div>
+            <div className='carousel'><img src={this.imageBanner[0]} alt=''/></div>
+            <div className='carousel'><img src={this.imageBanner[1]} alt=''/></div>
           </Carousel>
           
           <h2>
@@ -73,15 +89,13 @@ class Homepage extends React.Component {
         <section css={Styles.categories}>
           <h3 className='heading'>Lihat kategori</h3>
           <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, {xs: 12, sm: 32}]}>
-            <Col className="gutter-row" xs={24} sm={12} md={8}>
-              <BigTitleCard cardTitle='Elektronik'/>
-            </Col>
-            <Col className="gutter-row" xs={24} sm={12} md={8}>
-              <BigTitleCard cardTitle='Buku'/>
-            </Col>
-            <Col className="gutter-row" xs={24} sm={0} md={8}>
-              <BigTitleCard cardTitle='Fashion'/>
-            </Col>
+          {
+            this.categoryPack.map(e => (
+              <Col className="gutter-row" xs={24} sm={12} md={8}>
+                <BigTitleCard cardTitle={e.name} backImg={e.img}/>
+              </Col>
+            ))
+          }
           </Row>  
         </section>
 
